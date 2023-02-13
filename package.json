@@ -1,0 +1,25 @@
+{
+  "name": "justindra-utils",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky install",
+    "prettier": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.262.0",
+    "@aws-sdk/smithy-client": "^3.0.0",
+    "@aws-sdk/types": "^3.0.0",
+    "@aws-sdk/util-dynamodb": "^3.262.0",
+    "electrodb": "^2.4.1",
+    "ulid": "^2.3.0"
+  }
+}

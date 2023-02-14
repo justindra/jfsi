@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "typecheck": "tsc --noEmit",
     "prepare": "husky install",
     "prettier": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "@tsconfig/node16": "^1.0.3",
     "husky": "^8.0.3",
     "prettier": "^2.8.3",

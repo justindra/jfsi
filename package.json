@@ -5,7 +5,9 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "typecheck": "tsc --noEmit",
+    "build": "turbo run build",
+    "version": "./.changeset/version",
+    "release": "./.changeset/release",
     "prepare": "husky install",
     "prettier": "prettier --write --ignore-unknown"
   },
@@ -14,6 +16,7 @@
     "@tsconfig/node16": "^1.0.3",
     "husky": "^8.0.3",
     "prettier": "^2.8.3",
+    "turbo": "^1.7.4",
     "typescript": "^4.9.4"
   },
   "dependencies": {

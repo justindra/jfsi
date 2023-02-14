@@ -1,4 +1,6 @@
 #!/bin/bash
 set -e
 
-pnpm changeset version
+echo "🚀  Versioning packages/jfsi"
+# pnpm changeset version
+

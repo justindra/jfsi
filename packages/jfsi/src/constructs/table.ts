@@ -5,6 +5,7 @@ function generateGsiFields(gsiNumber: number) {
   const gsiFields: TableProps['fields'] = {};
   new Array(gsiNumber).fill(0).forEach((_, i) => {
     gsiFields[`gsi${i + 1}pk`] = 'string';
+    gsiFields[`gsi${i + 1}sk`] = 'string';
   });
   return gsiFields;
 }

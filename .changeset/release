@@ -9,6 +9,10 @@ cp packages/jfsi/README.md packages/jfsi/dist/README.md
 # Remove the publish config inside of package.json
 sed -i.bak -e '2,5d' packages/jfsi/dist/package.json
 
+# Delete all test files
+find packages/jfsi/dist -type f -name "*.test.js" -delete 
+find packages/jfsi/dist -type f -name "*.test.d.ts" -delete 
+
 # Publish the packages
 echo "🚀  Publishing packages/jfsi"
-pnpm changeset publish
+# pnpm changeset publish

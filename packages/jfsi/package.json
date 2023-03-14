@@ -1,13 +1,13 @@
 {
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  },
   "name": "jfsi",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
   "main": "index.js",
-  "publishConfig": {
-    "directory": "dist",
-    "access": "public"
-  },
   "exports": {
     "./constructs": "./constructs/index.js",
     "./node/*": "./node/*/index.js",

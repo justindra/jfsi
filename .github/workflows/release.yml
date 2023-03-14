@@ -55,6 +55,7 @@ jobs:
           createGithubReleases: false
           version: pnpm run version
           publish: pnpm run release
+          title: 'chore: version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

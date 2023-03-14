@@ -1,6 +1,4 @@
-import type { Attribute } from 'electrodb';
-
-export const AUDIT_FIELDS: Record<string, Attribute> = {
+export const AUDIT_FIELDS = {
   createdAt: {
     type: 'string',
     set: () => new Date().toISOString(),
@@ -20,4 +18,4 @@ export const AUDIT_FIELDS: Record<string, Attribute> = {
     type: 'string',
     readOnly: true,
   },
-};
+} as const;

@@ -1,5 +1,15 @@
 # jfsi
 
+## 0.1.0
+
+### Minor Changes
+
+- 61807a9: Added a new table construct utility
+
+### Patch Changes
+
+- 3c85136: Updated peerdependency for sst to use any version"
+
 ## 0.0.2
 
 ### Patch Changes

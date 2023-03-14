@@ -27,9 +27,10 @@
   "dependencies": {
     "aws-cdk-lib": "^2.64.0",
     "constructs": "10.1.156",
-    "sst": "^2.0.18"
+    "sst": "^2.1.27"
   },
   "peerDependencies": {
-    "sst": "2.0.17"
+    "electrodb": "*",
+    "sst": "*"
   }
 }

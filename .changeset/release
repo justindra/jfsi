@@ -15,4 +15,4 @@ find packages/jfsi/dist -type f -name "*.test.d.ts" -delete
 
 # Publish the packages
 echo "🚀  Publishing packages/jfsi"
-# pnpm changeset publish
+pnpm changeset publish

@@ -21,7 +21,7 @@ Here are the projects that uses this package and where I've repeated these patte
 Simply install the package
 
 ```
-pnpm add @justindra/utils
+pnpm add jfsi
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ pnpm add @justindra/utils
 To use it, import what you require.
 
 ```ts
-import { NotFoundException } from 'jfsi/errors';
+import { NotFoundException } from 'jfsi/node/errors';
 
 throw new NotFoundException('Cannot find item X...');
 ```

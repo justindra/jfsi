@@ -2,5 +2,5 @@
 set -e
 
 echo "🚀  Versioning packages/jfsi"
-# pnpm changeset version
+pnpm changeset version
 

@@ -6,4 +6,4 @@ cp packages/jfsi/package.json packages/jfsi/dist/package.json
 cp packages/jfsi/README.md packages/jfsi/dist/README.md
 sed -i.bak -e '2,5d' packages/jfsi/dist/package.json
 echo "🚀  Publishing packages/jfsi"
-# pnpm changeset publish
+pnpm changeset publish

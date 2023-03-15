@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.1.1
+
+### Patch Changes
+
+- 758ffb3: export table from index of constructs
+
 ## 0.1.0
 
 ### Minor Changes

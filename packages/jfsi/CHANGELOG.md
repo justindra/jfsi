@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.2.0
+
+### Patch Changes
+
+- 212bd5e: Added web utils for the frontend
+
 ## 0.1.1
 
 ### Patch Changes

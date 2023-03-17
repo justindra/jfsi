@@ -11,6 +11,7 @@
   "exports": {
     "./constructs": "./constructs/index.js",
     "./node/*": "./node/*/index.js",
+    "./web": "./web/index.js",
     ".": "./index.js",
     "./*": "./*"
   },

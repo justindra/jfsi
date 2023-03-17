@@ -1,0 +1,28 @@
+{
+  "name": "@jfsi/react",
+  "version": "0.1.1",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest --passWithNoTests",
+    "typecheck": "tsc -noEmit",
+    "build": "node build.js && tsc --emitDeclarationOnly --outDir dist"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.13",
+    "@heroicons/react": "^2.0.16",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "esbuild": "^0.17.11"
+  }
+}

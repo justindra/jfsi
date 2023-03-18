@@ -355,6 +355,19 @@ export const generateUserEntityDetails = (
       if (userIdFromAuthProvider !== user.userId) {
         throw new Error('Auth provider already exists for another user');
       }
+
+      // If the auth provider already exists for this user, make sure to update
+      // the tokens and then return the user
+      await UserAuthEntity.update({
+        userId: user.userId,
+        authProviderId: `${params.authProvider}|${params.authProviderId}`,
+      })
+        .set({
+          accessToken: params.accessToken,
+          refreshToken: params.refreshToken,
+          tokenExpiresAt: params.tokenExpiresAt,
+        })
+        .go();
       return user;
     }
 

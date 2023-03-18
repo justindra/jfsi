@@ -150,12 +150,11 @@ export const generateUserEntityDetails = (
           required: true,
         },
         authProvider: {
-          type: ['google', 'spotify'] as const,
+          type: ['google', 'spotify', 'jobber', 'facebook'] as const,
           required: true,
         },
         email: {
           type: 'string',
-          required: true,
         },
         accessToken: {
           type: 'string',
@@ -201,7 +200,8 @@ export const generateUserEntityDetails = (
    * @param email The email to get
    * @returns
    */
-  async function getUserIdByEmail(email: string) {
+  async function getUserIdByEmail(email?: string) {
+    if (!email) return null;
     // Get the userId based on the email
     const userEmail = await UserEmailEntity.query.emailsForUser({ email }).go();
 
@@ -307,7 +307,7 @@ export const generateUserEntityDetails = (
     }
 
     // Only create the email entity if it doesn't already exist
-    if (!fromEmail) {
+    if (!fromEmail && params.email) {
       await UserEmailEntity.create({
         userId: user.userId,
         email: params.email,
@@ -326,6 +326,63 @@ export const generateUserEntityDetails = (
         tokenExpiresAt: params.tokenExpiresAt,
       }).go();
     }
+
+    return user;
+  }
+
+  /**
+   * Add a new auth provider to an existing user as specified by the userId
+   * @param params The params to add the auth provider to the user
+   * @returns
+   */
+  async function addAuthProviderToUser(params: UserAuthInfo) {
+    // Get the user
+    const user = await getUserById(params.userId);
+
+    // If the user doesn't exist, then throw an error
+    if (!user) {
+      throw new Error(`User with id ${params.userId} does not exist`);
+    }
+
+    const userIdFromAuthProvider = await getUserIdByAuthProviderId(
+      params.authProvider,
+      params.authProviderId
+    );
+
+    // If the auth provider already exists for another user, then throw an error
+    // Otherwise, just return the user
+    if (userIdFromAuthProvider) {
+      if (userIdFromAuthProvider !== user.userId) {
+        throw new Error('Auth provider already exists for another user');
+      }
+      return user;
+    }
+
+    // If an email was provided, then just double check that it's not already
+    // attached to another user. And then create the email entity.
+    if (params.email) {
+      const userIdFromEmail = await getUserIdByEmail(params.email);
+      if (userIdFromEmail && userIdFromEmail !== params.userId) {
+        throw new Error('Email already exists for another user');
+      }
+      if (!userIdFromEmail) {
+        await UserEmailEntity.create({
+          userId: params.userId,
+          email: params.email,
+        }).go();
+      }
+    }
+
+    // Create the auth provider entity
+    await UserAuthEntity.create({
+      userId: user.userId,
+      authProviderId: `${params.authProvider}|${params.authProviderId}`,
+      authProvider: params.authProvider,
+      email: params.email,
+      accessToken: params.accessToken,
+      refreshToken: params.refreshToken,
+      tokenExpiresAt: params.tokenExpiresAt,
+    }).go();
 
     return user;
   }
@@ -372,5 +429,6 @@ export const generateUserEntityDetails = (
     getUserIdByEmail,
     createThroughAuthProvider,
     deleteUser,
+    addAuthProviderToUser,
   };
 };

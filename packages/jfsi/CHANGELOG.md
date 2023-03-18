@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.3.1
+
+### Patch Changes
+
+- 6c76ab0: Added function to add an authprovider to a user
+
 ## 0.3.0
 
 ## 0.2.0

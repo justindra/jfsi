@@ -10,10 +10,13 @@ This is all built to support the tech stack that I've used consistently.
 - [React](https://reactjs.org/)
 - [Tailwind](https://tailwindcss.com/)
 
-Here are the projects that uses this package and where I've repeated these patterns:
+Here are the projects that uses this package and where I've repeated some of these patterns:
 
 - [festack](https://festack.co)
 - [OneEPK](https://oneepk.com)
+- [Egami](https://egami.io)
+- [ifoundthis](https://ifoundthis.co/)
+- [MFM Agreement](https://mfm.justindra.com/)
 - [Buddy](https://withbuddy.com.au) - in progress
 
 ## Installation
@@ -33,3 +36,16 @@ import { NotFoundException } from 'jfsi/node/errors';
 
 throw new NotFoundException('Cannot find item X...');
 ```
+
+## Other Tech Stack
+
+Here are the other technologies that I prefer to use at this time. If you need something and don't want to waste time thinking about it, this is a great start.
+
+| JTD\*             | Tool                                 |
+| ----------------- | ------------------------------------ |
+| Analytics         | [Plausible](https://plausible.io/)   |
+| Payment Processor | [Stripe](https://stripe.com/)        |
+| Email Delivery    | [Postmark](https://postmarkapp.com/) |
+| Customer Support  | [Plain](https://plain.com/)          |
+
+> \*JTD - Jobs to be done

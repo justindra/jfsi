@@ -5,7 +5,7 @@ set -e
 pnpm build
 # Copy package.json and readme into the dist
 cp packages/jfsi/package.json packages/jfsi/dist/package.json
-cp packages/jfsi/README.md packages/jfsi/dist/README.md
+cp README.md packages/jfsi/dist/README.md
 # Remove the publish config inside of package.json
 sed -i.bak -e '2,5d' packages/jfsi/dist/package.json
 

@@ -78,15 +78,7 @@ export const AppLayout: React.FC<React.PropsWithChildren<AppLayoutProps>> = ({
 
           <main className='flex-1 overflow-y-auto'>
             <div className='py-6 mx-auto w-full lg:max-w-4xl'>
-              <div className='px-4 sm:px-6 lg:px-0'>
-                <h1 className='text-2xl font-semibold text-gray-900'>
-                  Dashboard
-                </h1>
-              </div>
-              <div className='px-4 sm:px-6 lg:px-0'>
-                {/* Content */}
-                {children}
-              </div>
+              <div className='px-4 sm:px-6 lg:px-0'>{children}</div>
             </div>
           </main>
         </div>

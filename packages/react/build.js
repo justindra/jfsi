@@ -20,6 +20,6 @@ build({
   outfile: './dist/index.esm.js',
   target: ['esnext', 'node16'],
   loader: {
-    '.png': 'copy',
+    '.png': 'dataurl',
   },
 });

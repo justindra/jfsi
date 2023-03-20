@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.4.0
+
+### Patch Changes
+
+- a6138d8: Updated getWebdomain to allow for a subdomain option
+
 ## 0.3.2
 
 ### Patch Changes

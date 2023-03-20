@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.4.0
+
+### Minor Changes
+
+- 0e3e5c2: Export out a sign-in page that can be used as a starting point
+
 ## 0.3.2
 
 ## 0.3.1

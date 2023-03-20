@@ -1,6 +1,6 @@
 import { ApiHandler } from 'sst/node/api';
 import { useSession } from 'sst/node/auth';
-import { ValidationException } from '../errors.js';
+import { ValidationException } from '../errors/index.js';
 
 declare module 'sst/node/auth' {
   export interface SessionTypes {

@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.4.2
+
+### Patch Changes
+
+- b7bac12: Updated loader to be dataurl
+
 ## 0.4.1
 
 ### Patch Changes

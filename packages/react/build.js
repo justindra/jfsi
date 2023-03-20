@@ -19,11 +19,7 @@ build({
   format: 'esm',
   outfile: './dist/index.esm.js',
   target: ['esnext', 'node16'],
-});
-
-build({
-  ...shared,
-  format: 'cjs',
-  outfile: './dist/index.cjs.js',
-  target: ['esnext', 'node16'],
+  loader: {
+    '.png': 'file',
+  },
 });

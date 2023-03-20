@@ -5,11 +5,15 @@ export const generateDomainUtils = (rootDomainName: string) => {
   /**
    * Get the app's domain name for the SST App
    * @param app The current SST App to get the URL for
+   * @param subdomain The optional subdomain to use
    */
-  const getWebDomain = (app: App) =>
-    isProduction(app.stage)
-      ? `${rootDomainName}`
+  const getWebDomain = (app: App, subdomain?: string) => {
+    const root = isProduction(app.stage)
+      ? rootDomainName
       : `${app.stage}.${rootDomainName}`;
+
+    return subdomain ? `${subdomain}.${root}` : root;
+  };
 
   /**
    * Get the app's URL for the SST App
@@ -19,18 +23,13 @@ export const generateDomainUtils = (rootDomainName: string) => {
   const getWebUrl = (app: App, subdomain?: string) =>
     app.local
       ? 'http://localhost:3000'
-      : subdomain
-      ? `https://${subdomain}.${getWebDomain(app)}`
-      : `https://${getWebDomain(app)}`;
+      : `https://${getWebDomain(app, subdomain)}`;
 
   /**
    * Get the API Domain for the SST App
    * @param app The current SST App to get the domain for
    */
-  const getApiDomain = (app: App) =>
-    isProduction(app.stage)
-      ? `api.${rootDomainName}`
-      : `api.${app.stage}.${rootDomainName}`;
+  const getApiDomain = (app: App) => getWebDomain(app, 'api');
 
   /**
    * Get the API URL for the SST App

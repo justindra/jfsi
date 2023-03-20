@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.3.2
+
+### Patch Changes
+
+- ddc6225: Move to a folder to be same as others
+
 ## 0.3.1
 
 ### Patch Changes

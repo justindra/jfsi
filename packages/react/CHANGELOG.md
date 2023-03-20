@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.4.1
+
+### Patch Changes
+
+- bef5431: Change loader to be copy for png
+
 ## 0.4.0
 
 ### Minor Changes

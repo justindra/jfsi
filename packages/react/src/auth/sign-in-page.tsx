@@ -1,5 +1,6 @@
 import GoogleLogo from './google-logo.png';
 import { SignInButton } from './sign-in-button';
+import { generateSignInUrl } from './utils';
 
 export interface SignInPageProps {
   /** The logo of the app */
@@ -25,18 +26,12 @@ export const SignInPage: React.FC<SignInPageProps> = ({
   redirectUrl,
 }) => {
   const providerLinks = providers.map((provider) => {
-    const params = new URLSearchParams({
-      client_id: clientId,
-      redirect_uri: redirectUrl,
-      response_type: 'code',
-      provider,
-    });
     // TODO: add fb and other social logins
     return {
       provider,
       logo: provider === 'google' ? GoogleLogo : '',
       label: provider === 'google' ? 'Sign in with Google' : '',
-      link: `${authUrl}?${params.toString()}`,
+      link: generateSignInUrl(provider, authUrl, redirectUrl, clientId),
     };
   });
   return (

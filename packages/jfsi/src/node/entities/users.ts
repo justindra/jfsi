@@ -1,6 +1,6 @@
 import { Entity, EntityItem, EntityConfiguration } from 'electrodb';
-import { ulid } from 'ulid';
 import { AUDIT_FIELDS, DDB_KEYS } from './defaults.js';
+import { generateId } from './utils.js';
 
 type GenerateUserEntityDetailsParams = {
   version?: string;
@@ -325,7 +325,7 @@ export const generateUserEntityDetails = (
         await UserEntity.create({
           firstName: params.firstName,
           lastName: params.lastName,
-          userId: `user|${ulid()}`,
+          userId: generateId('user'),
           avatarUrl: params.avatarUrl,
         }).go()
       ).data;

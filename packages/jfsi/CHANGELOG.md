@@ -1,5 +1,12 @@
 # jfsi
 
+## 0.4.4
+
+### Patch Changes
+
+- 3cb26b3: Add a generate id function to keep the ids consistent
+- 8ebaf7e: Export default key names for dynamodb that we can use in electrodb
+
 ## 0.4.3
 
 ### Patch Changes

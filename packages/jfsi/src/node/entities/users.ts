@@ -153,6 +153,13 @@ export const generateUserEntityDetails = (
           type: ['google', 'spotify', 'jobber', 'facebook'] as const,
           required: true,
         },
+        /**
+         * Some auth providers divide their users into separate accounts or
+         * organizations. This will helps us keep track of this if required.
+         */
+        authProviderAccountId: {
+          type: 'string',
+        },
         email: {
           type: 'string',
         },

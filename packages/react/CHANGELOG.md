@@ -1,5 +1,12 @@
 # @jfsi/react
 
+## 0.4.3
+
+### Patch Changes
+
+- 7c2f2a2: Expose the generate sign-in url function
+- 6b24cfe: Fix avatar image to have noreferrer so google avatar can be displayed
+
 ## 0.4.2
 
 ### Patch Changes

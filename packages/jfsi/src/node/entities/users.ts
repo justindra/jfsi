@@ -1,6 +1,6 @@
 import { Entity, EntityItem, EntityConfiguration } from 'electrodb';
 import { ulid } from 'ulid';
-import { AUDIT_FIELDS } from './defaults.js';
+import { AUDIT_FIELDS, DDB_KEYS } from './defaults.js';
 
 type GenerateUserEntityDetailsParams = {
   version?: string;
@@ -25,9 +25,12 @@ type GenerateUserEntityDetailsParams = {
  *
  * Please ensure the dynamodb table has the following indexes set:
  * ```
- *  primaryIndex: { partitionKey: 'pk', sortKey: 'sk' },
+ *  primaryIndex: {
+ *      partitionKey: DDB_KEYS.defaultIndex.partitionKey,
+ *      sortKey: DDB_KEYS.defaultIndex.sortKey
+ *  },
  *  globalIndexes: {
- *      gsi1: { partitionKey: 'gsi1pk', sortKey: 'gsi1sk' },
+ *      gsi1: { partitionKey: DDB_KEYS.gsi1.partitionKey, DDB_KEYS.gsi1.sortKey },
  *  },
  * ```
  * @param configuration The DynamoDB configuration as required by ElectroDB.
@@ -78,8 +81,11 @@ export const generateUserEntityDetails = (
       },
       indexes: {
         user: {
-          pk: { field: 'pk', composite: ['userId'] },
-          sk: { field: 'sk', composite: [] },
+          pk: {
+            field: DDB_KEYS.defaultIndex.partitionKey,
+            composite: ['userId'],
+          },
+          sk: { field: DDB_KEYS.defaultIndex.sortKey, composite: [] },
         },
       },
     },
@@ -113,13 +119,16 @@ export const generateUserEntityDetails = (
       },
       indexes: {
         userForEmails: {
-          pk: { field: 'pk', composite: ['userId'] },
-          sk: { field: 'sk', composite: ['email'] },
+          pk: {
+            field: DDB_KEYS.defaultIndex.partitionKey,
+            composite: ['userId'],
+          },
+          sk: { field: DDB_KEYS.defaultIndex.sortKey, composite: ['email'] },
         },
         emailsForUser: {
-          index: 'gsi1',
-          pk: { field: 'gsi1pk', composite: ['email'] },
-          sk: { field: 'gsi1sk', composite: ['userId'] },
+          index: DDB_KEYS.gsi1.indexName,
+          pk: { field: DDB_KEYS.gsi1.partitionKey, composite: ['email'] },
+          sk: { field: DDB_KEYS.gsi1.sortKey, composite: ['userId'] },
         },
       },
     },
@@ -175,13 +184,22 @@ export const generateUserEntityDetails = (
       },
       indexes: {
         providersForUsers: {
-          pk: { field: 'pk', composite: ['userId'] },
-          sk: { field: 'sk', composite: ['authProviderId'] },
+          pk: {
+            field: DDB_KEYS.defaultIndex.partitionKey,
+            composite: ['userId'],
+          },
+          sk: {
+            field: DDB_KEYS.defaultIndex.sortKey,
+            composite: ['authProviderId'],
+          },
         },
         usersForProviders: {
-          index: 'gsi1',
-          pk: { field: 'gsi1pk', composite: ['authProviderId'] },
-          sk: { field: 'gsi1sk', composite: ['userId'] },
+          index: DDB_KEYS.gsi1.indexName,
+          pk: {
+            field: DDB_KEYS.gsi1.partitionKey,
+            composite: ['authProviderId'],
+          },
+          sk: { field: DDB_KEYS.gsi1.sortKey, composite: ['userId'] },
         },
       },
     },

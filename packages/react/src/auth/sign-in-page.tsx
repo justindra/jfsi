@@ -55,7 +55,7 @@ export const SignInPage: React.FC<SignInPageProps> = ({
                 )}
                 <div className='mt-4 gap-4 flex flex-col'>
                   {providerLinks.map((linkProps) => (
-                    <SignInButton {...linkProps} />
+                    <SignInButton key={linkProps.provider} {...linkProps} />
                   ))}
                 </div>
               </div>

@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.4.3
+
+### Patch Changes
+
+- 6db0bcd: Updated auth to have authprovideraccountid field to track organizations attached to that account
+
 ## 0.4.2
 
 ## 0.4.1

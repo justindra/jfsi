@@ -1,5 +1,13 @@
 # @jfsi/react
 
+## 0.4.5
+
+### Patch Changes
+
+- 3a74f05: Export classnames from react and remove duplicate in jfsi
+- 74c7ae2: Adjusted styling for app layout
+- f5a1e61: Fix signinbutton should have a key when used in a list
+
 ## 0.4.4
 
 ## 0.4.3

@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.4.5
+
+### Patch Changes
+
+- 3a74f05: Export classnames from react and remove duplicate in jfsi
+
 ## 0.4.4
 
 ### Patch Changes

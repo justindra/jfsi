@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.4.7
+
+### Patch Changes
+
+- 56c3376: Styled more
+
 ## 0.4.6
 
 ### Patch Changes

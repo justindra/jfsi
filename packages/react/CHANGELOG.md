@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.4.6
+
+### Patch Changes
+
+- 75a280e: Updated layout styling
+
 ## 0.4.5
 
 ### Patch Changes

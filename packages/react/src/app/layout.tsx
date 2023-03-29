@@ -56,7 +56,7 @@ export const AppLayout: React.FC<React.PropsWithChildren<AppLayoutProps>> = ({
       />
       <div className='lg:pl-64'>
         <div className='mx-auto flex flex-col h-screen'>
-          <div className='mx-auto w-full lg:max-w-4xl flex h-16 flex-shrink-0 border-b border-gray-200 bg-transparent'>
+          <div className='mx-auto w-full lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl flex h-16 flex-shrink-0 border-b border-gray-200 bg-transparent'>
             {/* Sidebar open button */}
             <button
               type='button'
@@ -77,7 +77,7 @@ export const AppLayout: React.FC<React.PropsWithChildren<AppLayoutProps>> = ({
           </div>
 
           <main className='flex-1 overflow-y-auto'>
-            <div className='sm:py-6 mx-auto w-full lg:max-w-7xl h-full'>
+            <div className='sm:py-6 mx-auto w-full lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl h-full'>
               <div className='px-4 sm:px-6 lg:px-0 h-full'>{children}</div>
             </div>
           </main>

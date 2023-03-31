@@ -1,5 +1,19 @@
 # @jfsi/react
 
+## 0.6.0
+
+### Minor Changes
+
+- af63652: Added footer component to landing page
+- b423188: Added Logo Cloud to landing page components
+- c4e2eee: Added testimonials section
+- cf3f2d6: Added Feature Section and grid utils
+- 1b21788: Added Landing Page components
+
+### Patch Changes
+
+- 1c92ba3: Updated button to have size prop
+
 ## 0.5.1
 
 ### Patch Changes

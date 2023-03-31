@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.5.1
+
+### Patch Changes
+
+- 9a58112: Updated button to accept icon have a better loading state
+
 ## 0.5.0
 
 ### Minor Changes

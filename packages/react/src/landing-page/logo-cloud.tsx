@@ -1,4 +1,6 @@
 import { ImageProps } from 'app/types';
+import { classNames } from '../utils';
+import { getGridClassNames } from './grid-utils';
 
 type LogoCloudProps = {
   /**
@@ -10,7 +12,12 @@ type LogoCloudProps = {
   logos: ImageProps[];
 };
 
-// TODO: Create a formula to calculate the grid columns based on the number of logos
+/** Get the function to setup the grid items */
+const getGridClassNamesForLogoCloud = getGridClassNames({
+  default: { featuresPerRow: 2, totalColSpansAvailable: 4 },
+  sm: { featuresPerRow: 3, totalColSpansAvailable: 6 },
+  lg: { featuresPerRow: 5, totalColSpansAvailable: 5 },
+});
 
 /**
  * A logo cloud is a collection of logos that are displayed in a grid. The logos
@@ -22,15 +29,25 @@ export const LogoCloud: React.FC<LogoCloudProps> = ({ logos }) => {
   return (
     <div className='mx-auto max-w-7xl px-6 lg:px-8'>
       <div className='mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5'>
-        {logos.map((logo, index) => (
-          <img
-            key={index}
-            className='col-span-2 max-h-12 w-full object-contain lg:col-span-1'
-            width={158}
-            height={48}
-            {...logo}
-          />
-        ))}
+        {logos.map((logo, index) => {
+          const gridClassNames = getGridClassNamesForLogoCloud(
+            index,
+            logos.length
+          );
+
+          return (
+            <img
+              key={index}
+              className={classNames(
+                'max-h-12 w-full object-contain',
+                gridClassNames
+              )}
+              width={158}
+              height={48}
+              {...logo}
+            />
+          );
+        })}
       </div>
     </div>
   );

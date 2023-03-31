@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.5.0
+
+### Minor Changes
+
+- da9457e: Added button, empty and export profile menu
+
 ## 0.4.7
 
 ### Patch Changes

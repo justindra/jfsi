@@ -25,7 +25,7 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
   return (
     <footer
-      className='mt-32 bg-gray-900 sm:mt-56'
+      className='mt-16 bg-gray-900 sm:mt-32'
       aria-labelledby='footer-heading'>
       <h2 id='footer-heading' className='sr-only'>
         Footer

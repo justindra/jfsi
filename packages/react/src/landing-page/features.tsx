@@ -31,7 +31,7 @@ export const FeatureSection: React.FC<FeatureRowProps> = ({
   features,
 }) => {
   return (
-    <div className='mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8'>
+    <div className='mx-auto mt-16 max-w-7xl px-6 sm:mt-32 lg:px-8'>
       <div className='mx-auto max-w-2xl lg:text-center'>
         {preTitle && (
           <p className='text-base font-semibold leading-7 text-primary-600'>

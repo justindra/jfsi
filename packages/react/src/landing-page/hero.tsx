@@ -77,7 +77,7 @@ export const HeroMobile: React.FC<HeroMobileProps> = ({
             </div>
           )}
           {/* Large eye-grabber */}
-          <h1 className='mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
+          <h1 className='mt-10 max-w-xl text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
             {title}
           </h1>
           <p className='mt-6 text-lg leading-8 text-gray-600'>{description}</p>

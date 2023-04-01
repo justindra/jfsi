@@ -30,7 +30,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({
   },
 }) => {
   return (
-    <div className='relative isolate mt-32 sm:mt-56 sm:pt-32'>
+    <div className='relative isolate mt-16 sm:mt-32 sm:pt-32'>
       {/* Background square pattern */}
       <svg
         className='absolute inset-0 -z-10 hidden h-full w-full stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)] sm:block'

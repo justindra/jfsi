@@ -13,7 +13,7 @@ export const Empty: React.FC<EmptyProps> = ({
 }) => {
   return (
     <div className='text-center h-full flex items-center justify-center bg-gray-100'>
-      <div>
+      <div className='px-4 sm:px-0'>
         <IconComponent
           className='mx-auto h-12 w-12 text-gray-400'
           fill='none'

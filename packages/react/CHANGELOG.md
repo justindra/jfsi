@@ -1,5 +1,16 @@
 # @jfsi/react
 
+## 0.7.0
+
+### Minor Changes
+
+- 25ddacc: Added CTA and pricing section
+
+### Patch Changes
+
+- 125e600: Adjusted top margin on sections
+- 4c6512a: Updated styling of empty and profile menu
+
 ## 0.6.0
 
 ### Minor Changes

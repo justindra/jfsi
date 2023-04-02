@@ -1,6 +1,24 @@
 import GoogleLogo from './google-logo.png';
+import FacebookLogo from './facebook-logo.png';
 import { SignInButton } from './sign-in-button';
 import { generateSignInUrl } from './utils';
+
+type Provider = 'google' | 'facebook' | 'jobber';
+
+const LOGO_AND_LABELS: Record<Provider, { logo: any; label: string }> = {
+  google: {
+    logo: GoogleLogo,
+    label: 'Sign in with Google',
+  },
+  facebook: {
+    logo: FacebookLogo,
+    label: 'Sign in with Facebook',
+  },
+  jobber: {
+    logo: '',
+    label: 'Sign in with Jobber',
+  },
+};
 
 export interface SignInPageProps {
   /** The logo of the app */
@@ -26,11 +44,14 @@ export const SignInPage: React.FC<SignInPageProps> = ({
   redirectUrl,
 }) => {
   const providerLinks = providers.map((provider) => {
-    // TODO: add fb and other social logins
+    const { logo, label } = LOGO_AND_LABELS[provider] || {
+      logo: '',
+      label: `Sign in with ${provider}`,
+    };
     return {
       provider,
-      logo: provider === 'google' ? GoogleLogo : '',
-      label: provider === 'google' ? 'Sign in with Google' : '',
+      logo,
+      label,
       link: generateSignInUrl(provider, authUrl, redirectUrl, clientId),
     };
   });

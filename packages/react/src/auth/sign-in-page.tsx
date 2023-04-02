@@ -1,7 +1,8 @@
-import GoogleLogo from './google-logo.png';
+import { AlertWarning } from '../alerts';
 import FacebookLogo from './facebook-logo.png';
+import GoogleLogo from './google-logo.png';
 import { SignInButton } from './sign-in-button';
-import { generateSignInUrl } from './utils';
+import { generateSignInUrl, inApp } from './utils';
 
 type Provider = 'google' | 'facebook' | 'jobber';
 
@@ -55,6 +56,8 @@ export const SignInPage: React.FC<SignInPageProps> = ({
       link: generateSignInUrl(provider, authUrl, redirectUrl, clientId),
     };
   });
+  const isInWebview = inApp.isInApp;
+
   return (
     <div className='flex min-h-full'>
       <div className='flex flex-1 flex-col justify-center text-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24'>
@@ -82,6 +85,23 @@ export const SignInPage: React.FC<SignInPageProps> = ({
               </div>
             </div>
           </div>
+          {isInWebview && (
+            <div className='mt-8'>
+              <AlertWarning
+                title='In-app browser detected'
+                message={
+                  <>
+                    Looks like you are wanting to sign-in using an in-app
+                    browser: {inApp.browser}. Please note that{' '}
+                    <strong>Sign in with Google</strong> may not work properly.
+                    If you'd like to use Google, please open{' '}
+                    <span className='whitespace-nowrap'>ruru.chat</span> in your
+                    device's browser.
+                  </>
+                }
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

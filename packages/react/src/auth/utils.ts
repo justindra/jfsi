@@ -1,3 +1,5 @@
+import InApp from 'detect-inapp';
+
 /**
  * Generate the sign in url for the given provider
  * @param provider The provider to sign in with, e.g. Google, GitHub, etc.
@@ -21,3 +23,7 @@ export function generateSignInUrl(
 
   return `${authUrl}?${params.toString()}`;
 }
+
+export const inApp = new InApp(
+  navigator.userAgent || navigator.vendor || (window as any).opera
+);

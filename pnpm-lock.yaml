@@ -53,17 +53,21 @@ importers:
     specifiers:
       '@headlessui/react': ^1.7.13
       '@heroicons/react': ^2.0.16
+      '@types/detect-inapp': ^1.4.1
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
+      detect-inapp: ^1.4.0
       esbuild: ^0.17.11
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
-      '@heroicons/react': 2.0.16_react@18.2.0
+      '@headlessui/react': 1.7.13
+      '@heroicons/react': 2.0.16
+      detect-inapp: 1.4.0
       react: link:../../../ladderless/apps/web/node_modules/react
       react-dom: link:../../../ladderless/apps/web/node_modules/react-dom
     devDependencies:
+      '@types/detect-inapp': 1.4.1
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
       esbuild: 0.17.11
@@ -3272,7 +3276,7 @@ packages:
     dev: true
     optional: true
 
-  /@headlessui/react/1.7.13_biqbaboplfbrettd7655fr4n2y:
+  /@headlessui/react/1.7.13:
     resolution: {integrity: sha512-9n+EQKRtD9266xIHXdY5MfiXPDfYwl7zBM7KOx2Ae3Gdgxy8QML1FkCMjq6AsOf0l6N9uvI4HcFtuFlenaldKg==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -3280,16 +3284,12 @@ packages:
       react-dom: ^16 || ^17 || ^18
     dependencies:
       client-only: 0.0.1
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@heroicons/react/2.0.16_react@18.2.0:
+  /@heroicons/react/2.0.16:
     resolution: {integrity: sha512-x89rFxH3SRdYaA+JCXwfe+RkE1SFTo9GcOkZettHer71Y3T7V+ogKmfw5CjTazgS3d0ClJ7p1NA+SP7VQLQcLw==}
     peerDependencies:
       react: '>= 16'
-    dependencies:
-      react: 18.2.0
     dev: false
 
   /@httptoolkit/websocket-stream/6.0.1:
@@ -3409,6 +3409,10 @@ packages:
 
   /@types/chai/4.3.4:
     resolution: {integrity: sha512-KnRanxnpfpjUTqTCXslZSEdLfXExwgNxYPdiO2WGUj8+HDjFi8R3k5RVKPeSCzLjCcshCAtVO2QBbVuAV4kTnw==}
+    dev: true
+
+  /@types/detect-inapp/1.4.1:
+    resolution: {integrity: sha512-EFW9pE7eUPobySkfyCjnPsEnDuRqT/bSQpUoCjQ+dbXNRn9WnVAjdNsb1Q7IG9uSUJdqu32+ni88yK0DxlHKfw==}
     dev: true
 
   /@types/is-ci/3.0.0:
@@ -4562,6 +4566,12 @@ packages:
   /destroy/1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
+    dev: false
+
+  /detect-inapp/1.4.0:
+    resolution: {integrity: sha512-2S29Udznzsno138s33j/yR/9uzFU25rt/1DWecnpoj5oCmjvsCt4tFe+6go6drTyuLodz7ZNQSGbl17cDDx/+Q==}
+    dependencies:
+      lodash: 4.17.21
     dev: false
 
   /detect-indent/6.1.0:
@@ -6686,16 +6696,6 @@ packages:
       - utf-8-validate
     dev: false
 
-  /react-dom/18.2.0_react@18.2.0:
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
-    peerDependencies:
-      react: ^18.2.0
-    dependencies:
-      loose-envify: 1.4.0
-      react: 18.2.0
-      scheduler: 0.23.0
-    dev: false
-
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
     dev: true
@@ -6718,13 +6718,6 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-    dev: false
-
-  /react/18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
     dev: false
 
   /read-pkg-up/7.0.1:
@@ -6948,12 +6941,6 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-    dev: false
-
-  /scheduler/0.23.0:
-    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
-    dependencies:
-      loose-envify: 1.4.0
     dev: false
 
   /semver/5.7.1:

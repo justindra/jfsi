@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.7.2
+
+### Patch Changes
+
+- 57a1c11: Added alert for when using an in-app browser
+
 ## 0.7.1
 
 ### Patch Changes

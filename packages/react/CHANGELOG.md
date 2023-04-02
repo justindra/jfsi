@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.7.1
+
+### Patch Changes
+
+- 0e25732: Added facebook logo into for sign in
+
 ## 0.7.0
 
 ### Minor Changes

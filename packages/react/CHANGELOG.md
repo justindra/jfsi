@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.7.3
+
+### Patch Changes
+
+- 22526fc: Chrome, Safari and IE should be ok to use
+
 ## 0.7.2
 
 ### Patch Changes

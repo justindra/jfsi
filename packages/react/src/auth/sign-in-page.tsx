@@ -2,7 +2,7 @@ import { AlertWarning } from '../alerts';
 import FacebookLogo from './facebook-logo.png';
 import GoogleLogo from './google-logo.png';
 import { SignInButton } from './sign-in-button';
-import { generateSignInUrl, inApp } from './utils';
+import { IS_IN_APP, generateSignInUrl, inApp } from './utils';
 
 type Provider = 'google' | 'facebook' | 'jobber';
 
@@ -56,7 +56,7 @@ export const SignInPage: React.FC<SignInPageProps> = ({
       link: generateSignInUrl(provider, authUrl, redirectUrl, clientId),
     };
   });
-  const isInWebview = inApp.isInApp;
+  const isInWebview = IS_IN_APP;
 
   return (
     <div className='flex min-h-full'>
@@ -95,8 +95,13 @@ export const SignInPage: React.FC<SignInPageProps> = ({
                     browser: {inApp.browser}. Please note that{' '}
                     <strong>Sign in with Google</strong> may not work properly.
                     If you'd like to use Google, please open{' '}
-                    <span className='whitespace-nowrap'>ruru.chat</span> in your
-                    device's browser.
+                    <a
+                      href={window.location.href}
+                      target='_blank'
+                      className='whitespace-nowrap underline underline-offset-1'>
+                      {window.location.href}
+                    </a>{' '}
+                    in your device's browser.
                   </>
                 }
               />

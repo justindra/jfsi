@@ -27,3 +27,7 @@ export function generateSignInUrl(
 export const inApp = new InApp(
   navigator.userAgent || navigator.vendor || (window as any).opera
 );
+
+export const IS_IN_APP =
+  inApp.isInApp &&
+  !['chrome', 'firefox', 'safari', 'ie'].includes(inApp.browser);

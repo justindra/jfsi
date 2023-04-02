@@ -5,7 +5,7 @@ export const AlertWarning: React.FC<{
   message: React.ReactNode;
 }> = ({ title, message }) => {
   return (
-    <div className='rounded-md bg-yellow-50 p-4'>
+    <div className='rounded-md bg-yellow-50 p-4 text-left'>
       <div className='flex'>
         <div className='flex-shrink-0'>
           <ExclamationTriangleIcon

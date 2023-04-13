@@ -28,6 +28,7 @@
   "dependencies": {
     "aws-cdk-lib": "^2.64.0",
     "constructs": "10.1.156",
+    "openai": "^3.2.1",
     "sst": "^2.1.27"
   },
   "peerDependencies": {

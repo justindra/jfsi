@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.8.0
+
+### Minor Changes
+
+- 8eed975: Added openAI shared library to call the openAIAPI
+
 ## 0.7.3
 
 ## 0.7.2

@@ -24,6 +24,7 @@ export function generateSignInUrl(
   return `${authUrl}?${params.toString()}`;
 }
 
+// TODO: this does not work in Astro, it breaks the whole library as navigator is not defined in node
 export const inApp = new InApp(
   navigator.userAgent || navigator.vendor || (window as any).opera
 );

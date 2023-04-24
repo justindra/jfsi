@@ -1,3 +1,4 @@
-export * from './layout.js';
-export * from './page-title.js';
-export * from './profile-menu.js';
+export * from './layout';
+export * from './page-title';
+export * from './profile-menu';
+export * from './sidebar-layout';

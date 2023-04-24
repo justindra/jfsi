@@ -1,2 +1,2 @@
-export const AUTH_COOKIE_TOKEN = 'sst_auth_token';
-export const AUTH_COOKIE_USER = 'sst_auth_user';
+export const AUTH_TOKEN_KEY = 'sst_auth_token';
+export const AUTH_USER_KEY = 'sst_auth_user';

@@ -2,7 +2,7 @@ import { AlertWarning } from '../alerts';
 import FacebookLogo from './facebook-logo.png';
 import GoogleLogo from './google-logo.png';
 import { SignInButton } from './sign-in-button';
-import { IS_IN_APP, generateSignInUrl, inApp } from './utils';
+import { IS_IN_APP, generateSignInUrl, inApp } from './sign-in-utils';
 
 type Provider = 'google' | 'facebook' | 'jobber';
 

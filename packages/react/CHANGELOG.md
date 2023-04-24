@@ -1,5 +1,12 @@
 # @jfsi/react
 
+## 0.9.1
+
+### Patch Changes
+
+- f78c23e: Fix the avatar url not displaying properly
+- 7b0845e: Fix colours to satisfy darkmode and use primary colour
+
 ## 0.9.0
 
 ### Minor Changes

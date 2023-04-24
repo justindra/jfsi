@@ -241,6 +241,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                     className='h-8 w-8 rounded-full bg-gray-50'
                     src={user.avatarUrl}
                     alt={`Avatar of ${user.name}`}
+                    referrerPolicy='no-referrer'
                   />
                   <span className='sr-only'>Your profile</span>
                   <span aria-hidden='true'>{user.name}</span>

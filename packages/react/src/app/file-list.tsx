@@ -2,6 +2,7 @@ import { PaperClipIcon } from '@heroicons/react/20/solid';
 
 type FileListProps = {
   files: {
+    id?: string;
     name: string;
     size?: string;
     action?: {
@@ -17,7 +18,9 @@ export const FileList: React.FC<FileListProps> = ({ files }) => {
       role='list'
       className='divide-y divide-gray-100 dark:divide-white/10 rounded-md border border-gray-200 dark:border-white/20'>
       {files.map((file) => (
-        <li className='flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6'>
+        <li
+          key={file.id || file.name}
+          className='flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6'>
           <div className='flex w-0 flex-1 items-center'>
             <PaperClipIcon
               className='h-5 w-5 flex-shrink-0 text-gray-400'

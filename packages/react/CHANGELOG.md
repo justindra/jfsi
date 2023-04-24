@@ -1,5 +1,17 @@
 # @jfsi/react
 
+## 0.9.0
+
+### Minor Changes
+
+- b0274b2: Added description list and file list
+- 782d1d2: Added sign out page and callback pages to be shared
+- e6820fe: Added a new sidebar layout
+
+### Patch Changes
+
+- f3b0096: Expose auth utilities
+
 ## 0.8.0
 
 ## 0.7.3

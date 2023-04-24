@@ -21,7 +21,7 @@ const LOGO_AND_LABELS: Record<Provider, { logo: any; label: string }> = {
   },
 };
 
-export interface SignInPageProps {
+export interface AuthSignInPageProps {
   /** The logo of the app */
   logo: HTMLImageElement['src'];
   /** The alt of the logo */
@@ -36,7 +36,7 @@ export interface SignInPageProps {
   redirectUrl: string;
 }
 
-export const SignInPage: React.FC<SignInPageProps> = ({
+export const AuthSignInPage: React.FC<AuthSignInPageProps> = ({
   logo,
   logoAlt,
   providers,

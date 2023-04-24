@@ -60,7 +60,7 @@ export const AppLayout: React.FC<React.PropsWithChildren<AppLayoutProps>> = ({
             {/* Sidebar open button */}
             <button
               type='button'
-              className='border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden'
+              className='border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 lg:hidden'
               onClick={() => setSidebarOpen(true)}>
               <span className='sr-only'>Open sidebar</span>
               <Bars3BottomLeftIcon className='h-6 w-6' aria-hidden='true' />

@@ -15,7 +15,7 @@ export const FileList: React.FC<FileListProps> = ({ files }) => {
   return (
     <ul
       role='list'
-      className='divide-y divide-white/10 rounded-md border border-white/20'>
+      className='divide-y divide-gray-100 dark:divide-white/10 rounded-md border border-gray-200 dark:border-white/20'>
       {files.map((file) => (
         <li className='flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6'>
           <div className='flex w-0 flex-1 items-center'>
@@ -32,7 +32,7 @@ export const FileList: React.FC<FileListProps> = ({ files }) => {
             <div className='ml-4 flex-shrink-0'>
               <a
                 href={file.action.href}
-                className='font-medium text-indigo-400 hover:text-indigo-300'>
+                className='font-medium text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300'>
                 {file.action.label}
               </a>
             </div>

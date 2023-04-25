@@ -21,6 +21,7 @@ export type Handler<TBody, TPathParameters, TResponse> = (params: {
   body: TBody;
   pathParameters: TPathParameters;
   actorId: string;
+  organizationId: string;
 }) => Promise<{
   statusCode?: number;
   message: string;
@@ -53,6 +54,7 @@ export const AuthenticatedApiHandler = <
         body: parsedBody,
         pathParameters: pathParameters as TPathParameters,
         actorId: session.properties.userId,
+        organizationId: session.properties.organizationId,
       });
 
       return {
@@ -91,6 +93,10 @@ export const PublicApiHandler = <
         body: parsedBody,
         pathParameters: pathParameters as TPathParameters,
         actorId: session.type === 'user' ? session.properties.userId : 'public',
+        organizationId:
+          session.type === 'user'
+            ? session.properties.organizationId
+            : 'public',
       });
 
       return {

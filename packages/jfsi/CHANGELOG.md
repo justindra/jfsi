@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.10.1
+
+### Patch Changes
+
+- e3b1ffb: Fix the session types to include organizationId
+
 ## 0.10.0
 
 ### Minor Changes

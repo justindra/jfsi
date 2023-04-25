@@ -5,13 +5,11 @@ import { generateUserEntityDetails } from './users.js';
 import { generateId } from './utils.js';
 
 type GenerateOrganizationEntityDetailsParams<
-  A extends string,
-  F extends string,
-  C extends string
+  S extends Schema<string, string, string>
 > = {
   version?: string;
   service: string;
-  organizationConfig?: Pick<Schema<A, F, C>, 'attributes' | 'indexes'>;
+  organizationConfig: S;
 };
 
 /**
@@ -49,14 +47,15 @@ type GenerateOrganizationEntityDetailsParams<
 export const generateOrganizationEntityDetails = <
   A extends string,
   F extends string,
-  C extends string
+  C extends string,
+  S extends Schema<A, F, C>
 >(
   configuration: EntityConfiguration,
   {
     version = '1',
     service,
     organizationConfig,
-  }: GenerateOrganizationEntityDetailsParams<A, F, C>,
+  }: GenerateOrganizationEntityDetailsParams<S>,
   Users: ReturnType<typeof generateUserEntityDetails>
 ) => {
   /**
@@ -80,14 +79,14 @@ export const generateOrganizationEntityDetails = <
         },
         /** The name of the organization */
         name: { type: 'string' },
-        ...(organizationConfig?.attributes ?? {}),
+        ...((organizationConfig?.attributes || {}) as S['attributes']),
       },
       indexes: {
         organizationById: {
           pk: { field: 'pk', composite: ['organizationId'] },
           sk: { field: 'sk', composite: [] },
         },
-        ...(organizationConfig?.indexes ?? {}),
+        ...((organizationConfig?.indexes || {}) as S['indexes']),
       },
     },
     configuration
@@ -154,14 +153,19 @@ export const generateOrganizationEntityDetails = <
         'ownerId is required to create an organization.'
       );
     }
+
+    // TODO: We have to cast to any because at this point, TS is still unsure as to what could be
+    // in the schema.
     const res = await OrganizationEntity.create({
       organizationId: generateId('orgs'),
       name: organizationName,
-    }).go();
+    } as any).go();
 
     /** Create the organization and user connection */
     await OrganizationUserEntity.create({
-      organizationId: res.data.organizationId,
+      // TODO: We have to cast to any because at this point, TS is still unsure as to what could be
+      // in the schema.
+      organizationId: (res.data as any).organizationId,
       userId: ownerId,
       // The role should be owner as they are the one that is creating the organization
       role: 'owner',

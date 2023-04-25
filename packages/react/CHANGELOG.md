@@ -1,5 +1,12 @@
 # @jfsi/react
 
+## 0.9.2
+
+### Patch Changes
+
+- 0ea3ca1: Updated name to be AuthSignInPage to comply with the others
+- 62b449b: FileList items did not have key set
+
 ## 0.9.1
 
 ### Patch Changes

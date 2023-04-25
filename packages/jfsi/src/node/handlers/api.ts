@@ -1,18 +1,16 @@
 import { ApiHandler } from 'sst/node/api';
-import { useSession } from 'sst/node/auth';
+import { useSession } from 'sst/node/future/auth';
 import { ValidationException } from '../errors/index.js';
 
-declare module 'sst/node/auth' {
+declare module 'sst/node/future/auth' {
   export interface SessionTypes {
     user: {
       /** The user's id */
       userId: string;
+      /** The organization id the user belongs to */
+      organizationId: string;
       /** The user's name */
       name?: string;
-      /** The spotify access token we can use to talk to the API */
-      accessToken: string;
-      /** The spotify refresh token we can use to refresh the token if it's expired */
-      refreshToken: string;
       /** A url to an image to be displayed as the avatar */
       avatarUrl?: string;
     };

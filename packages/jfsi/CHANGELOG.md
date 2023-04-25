@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.10.0
+
+### Minor Changes
+
+- 27d69e6: Added organizations into jfsi entities
+
 ## 0.9.2
 
 ## 0.9.1

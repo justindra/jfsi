@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.10.2
+
+### Patch Changes
+
+- 3cbeb12: Fix organizationId not passed into the handler typings
+
 ## 0.10.1
 
 ### Patch Changes

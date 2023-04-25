@@ -93,7 +93,7 @@ export const generateUserEntityDetails = (
   );
 
   /**
-   * The user email entity describes the user to email relationshop. A user can
+   * The user email entity describes the user to email relationship. A user can
    * have multiple emails, but a single email should only ever be attached to one
    * user.
    */

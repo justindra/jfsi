@@ -458,6 +458,16 @@ export const generateUserEntityDetails = (
     return null;
   }
 
+  /**
+   * Get the list of emails for a particular user
+   * @param userId The user id to check
+   * @returns
+   */
+  async function getEmailsForUserId(userId: string): Promise<string[]> {
+    const user = await UserEmailEntity.query.userForEmails({ userId }).go();
+    return user.data.map((item) => item.email);
+  }
+
   return {
     UserEntity,
     UserAuthEntity,
@@ -468,5 +478,6 @@ export const generateUserEntityDetails = (
     createThroughAuthProvider,
     deleteUser,
     addAuthProviderToUser,
+    getEmailsForUserId,
   };
 };

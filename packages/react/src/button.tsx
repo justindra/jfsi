@@ -1,3 +1,4 @@
+import type { HeroIcon } from './icons';
 import { classNames } from './utils';
 
 function getColourClasses(
@@ -45,8 +46,8 @@ type BaseButtonProps = {
   size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   loading?: boolean;
-  startIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
-  endIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
+  startIcon?: HeroIcon;
+  endIcon?: HeroIcon;
 };
 
 type ButtonProps = React.PropsWithChildren<

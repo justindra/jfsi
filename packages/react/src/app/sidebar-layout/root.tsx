@@ -57,8 +57,8 @@ export const AppRoot: React.FC<AppRootProps> = ({
         />
         <AppHeader title={title} user={user} profileUrl={profileUrl} />
 
-        <main className='py-10 lg:pl-72'>
-          <div className='px-4 sm:px-6 lg:px-8'>{children}</div>
+        <main className='py-10 lg:pl-72 h-[calc(100vh-64px)] lg:h-screen'>
+          <div className='px-4 sm:px-6 lg:px-8 h-full'>{children}</div>
         </main>
       </div>
     </AppLayoutProvider>

@@ -1,8 +1,10 @@
+import type { HeroIcon } from './icons';
+
 type EmptyProps = {
   title: string;
   description: string;
   actions?: React.ReactNode;
-  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  icon: HeroIcon;
 };
 
 export const Empty: React.FC<EmptyProps> = ({
@@ -12,7 +14,7 @@ export const Empty: React.FC<EmptyProps> = ({
   icon: IconComponent,
 }) => {
   return (
-    <div className='text-center h-full flex items-center justify-center bg-gray-100'>
+    <div className='text-center h-full flex items-center justify-center'>
       <div className='px-4 sm:px-0'>
         <IconComponent
           className='mx-auto h-12 w-12 text-gray-400'

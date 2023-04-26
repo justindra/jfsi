@@ -1,5 +1,15 @@
 # @jfsi/react
 
+## 0.11.0
+
+### Minor Changes
+
+- 3be9d5c: Updated some components, added file upload field and modal
+
+### Patch Changes
+
+- 61f6591: Added form fields
+
 ## 0.10.2
 
 ## 0.10.1

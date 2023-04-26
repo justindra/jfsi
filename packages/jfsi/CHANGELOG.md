@@ -1,11 +1,5 @@
 # jfsi
 
-## 0.10.3
-
-### Patch Changes
-
-- b7bee85: Updated typings so we get typesafety on the extension
-
 ## 0.10.2
 
 ### Patch Changes

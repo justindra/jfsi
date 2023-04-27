@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import { useAppLayout } from './context';
 import { User } from '../../auth/utils';
 import { classNames } from '../../utils';
+import { Link } from 'react-router-dom';
 
 export type AppSidebarProps = {
   brand: {
@@ -101,8 +102,8 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                         <ul role='list' className='-mx-2 space-y-1'>
                           {navigation.map((item) => (
                             <li key={item.name}>
-                              <a
-                                href={item.href}
+                              <Link
+                                to={item.href}
                                 className={classNames(
                                   item.current
                                     ? 'bg-gray-50 text-primary-600'
@@ -119,7 +120,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                                   aria-hidden='true'
                                 />
                                 {item.name}
-                              </a>
+                              </Link>
                             </li>
                           ))}
                         </ul>
@@ -132,8 +133,8 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                           <ul role='list' className='-mx-2 mt-2 space-y-1'>
                             {subnav.navigation.map((item) => (
                               <li key={item.name}>
-                                <a
-                                  href={item.href}
+                                <Link
+                                  to={item.href}
                                   className={classNames(
                                     item.current
                                       ? 'bg-gray-50 text-primary-600'
@@ -150,7 +151,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                                     {item.initial}
                                   </span>
                                   <span className='truncate'>{item.name}</span>
-                                </a>
+                                </Link>
                               </li>
                             ))}
                           </ul>
@@ -178,8 +179,8 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                 <ul role='list' className='-mx-2 space-y-1'>
                   {navigation.map((item) => (
                     <li key={item.name}>
-                      <a
-                        href={item.href}
+                      <Link
+                        to={item.href}
                         className={classNames(
                           item.current
                             ? 'bg-gray-50 text-primary-600'
@@ -196,7 +197,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                           aria-hidden='true'
                         />
                         {item.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -209,8 +210,8 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                   <ul role='list' className='-mx-2 mt-2 space-y-1'>
                     {subnav.navigation.map((item) => (
                       <li key={item.name}>
-                        <a
-                          href={item.href}
+                        <Link
+                          to={item.href}
                           className={classNames(
                             item.current
                               ? 'bg-gray-50 text-primary-600'
@@ -227,15 +228,15 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                             {item.initial}
                           </span>
                           <span className='truncate'>{item.name}</span>
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </li>
               ))}
               <li className='-mx-6 mt-auto'>
-                <a
-                  href={profileUrl}
+                <Link
+                  to={profileUrl}
                   className='flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50'>
                   <img
                     className='h-8 w-8 rounded-full bg-gray-50'
@@ -245,7 +246,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
                   />
                   <span className='sr-only'>Your profile</span>
                   <span aria-hidden='true'>{user.name}</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

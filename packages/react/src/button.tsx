@@ -2,12 +2,8 @@ import type { HeroIcon } from './icons';
 import { classNames } from './utils';
 
 function getColourClasses(
-  variant: 'primary' | 'default',
-  disabled: boolean = false
+  variant: 'primary' | 'default'
 ): NonNullable<React.HTMLAttributes<HTMLElement>['className']> {
-  if (disabled) {
-    return 'bg-gray-400 hover:bg-gray-400 ring-gray-300 text-white pointer-events-none';
-  }
   if (variant === 'primary') {
     return 'bg-primary-600 hover:bg-primary-500 text-white ring-primary-500';
   }
@@ -75,8 +71,9 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       className={classNames(
         'inline-flex items-center rounded-md text-sm font-semibold shadow-sm ring-1 ring-inset ',
-        getColourClasses(variant, disabled || loading),
+        getColourClasses(variant),
         getSizeClasses(size),
+        disabled || loading ? 'opacity-50 pointer-events-none' : '',
         buttonProps.className || ''
       )}>
       {StartIconComponent && (
@@ -119,8 +116,9 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
       {...props}
       className={classNames(
         'inline-flex items-center rounded-md text-sm font-semibold shadow-sm ring-1 ring-inset',
-        getColourClasses(variant, disabled || loading),
+        getColourClasses(variant),
         getSizeClasses(size),
+        disabled || loading ? 'opacity-50 pointer-events-none' : '',
         props.className || ''
       )}>
       {StartIconComponent && (

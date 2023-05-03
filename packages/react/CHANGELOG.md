@@ -1,5 +1,13 @@
 # @jfsi/react
 
+## 0.11.1
+
+### Patch Changes
+
+- cf5543c: Updated styling for disabled buttons
+- 135b6a9: Fix so that links uses react-router-dom links
+- 74f435a: Updated the file list component to have a status dot
+
 ## 0.11.0
 
 ### Minor Changes

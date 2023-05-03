@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.11.1
+
+### Patch Changes
+
+- e68655a: Added chat entity to be shared with other projects
+
 ## 0.11.0
 
 ## 0.10.2

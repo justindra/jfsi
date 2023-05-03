@@ -1,14 +1,39 @@
-import { PaperClipIcon } from '@heroicons/react/20/solid';
+import React from 'react';
+import { classNames } from '../utils';
+
+type DotVariants = 'success' | 'danger' | 'warning' | 'default';
+type DotProps = {
+  variant?: DotVariants;
+};
+
+const dotVariants: Record<DotVariants, string> = {
+  success: 'fill-green-500 dark:fill-green-400',
+  danger: 'fill-red-500 dark:fill-red-400',
+  warning: 'fill-yellow-500 dark:fill-yellow-400',
+  default: 'fill-gray-500 dark:fill-gray-400',
+};
+
+const Dot: React.FC<DotProps> = ({ variant = 'default' }) => {
+  return (
+    <svg
+      className={classNames('h-1.5 w-1.5', dotVariants[variant])}
+      viewBox='0 0 6 6'
+      aria-hidden='true'>
+      <circle cx={3} cy={3} r={3} />
+    </svg>
+  );
+};
 
 type FileListProps = {
   files: {
     id?: string;
     name: string;
-    size?: string;
+    description?: string;
     action?: {
       label: string;
       href: string;
     };
+    status?: DotVariants;
   }[];
 };
 
@@ -22,13 +47,10 @@ export const FileList: React.FC<FileListProps> = ({ files }) => {
           key={file.id || file.name}
           className='flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6'>
           <div className='flex w-0 flex-1 items-center'>
-            <PaperClipIcon
-              className='h-5 w-5 flex-shrink-0 text-gray-400'
-              aria-hidden='true'
-            />
-            <div className='ml-4 flex min-w-0 flex-1 gap-2'>
-              <span className='truncate font-medium'>{file.name}</span>
-              <span className='flex-shrink-0 text-gray-400'>{file.size}</span>
+            <Dot variant={file.status} />
+            <div className='ml-4 min-w-0 flex-1 gap-2'>
+              <p className='block truncate font-medium'>{file.name}</p>
+              <p className='text-gray-400'>{file.description}</p>
             </div>
           </div>
           {file.action && (

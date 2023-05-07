@@ -70,8 +70,8 @@ export const generateChatEntityDetails = <
               content: { type: 'string', required: true },
               /** The id of the user that sent this message, if any */
               userId: { type: 'string' },
-              /** The time the message was sent in */
-              timestamp: { type: 'number' },
+              /** The time the message was sent in as an ISO date */
+              timestamp: { type: 'string' },
             },
           },
         },
@@ -120,7 +120,7 @@ export const generateChatEntityDetails = <
    * @param message The message to update
    * @returns
    */
-  async function updateMessageAtIndex(
+  function updateMessageAtIndex(
     updateCall: ReturnType<(typeof ChatEntity)['update']>,
     index: number,
     message: string
@@ -130,6 +130,13 @@ export const generateChatEntityDetails = <
     });
   }
 
+  type Message = {
+    role: 'assistant' | 'user' | 'system';
+    content: string;
+    userId?: string;
+    timestamp?: string;
+  };
+
   /**
    * We want to set the chat to be processed by the OpenAI API. This will
    * set the status to waiting and add the message to the chat.
@@ -137,11 +144,11 @@ export const generateChatEntityDetails = <
    * @param message The message to add to the chat
    * @returns
    */
-  async function setMessageToBeProcessed(
+  function setMessageToBeProcessed(
     updateCall: ReturnType<(typeof ChatEntity)['update']>,
     // TODO: fix typing issue
     // message: Info['messages'][number],
-    message: any
+    message: Message
   ) {
     return updateCall
       .append({ messages: [message] } as any)
@@ -153,7 +160,7 @@ export const generateChatEntityDetails = <
    * to processing so we don't try to process it again.
    * @returns
    */
-  async function setMessageToBeProcessing(
+  function setMessageToBeProcessing(
     updateCall: ReturnType<(typeof ChatEntity)['update']>
   ) {
     return updateCall
@@ -167,10 +174,10 @@ export const generateChatEntityDetails = <
    * @param messages The messages to add to the chat
    * @returns
    */
-  async function completeMessageProcessing(
+  function completeMessageProcessing(
     updateCall: ReturnType<(typeof ChatEntity)['update']>,
     // messages: Info['messages'],
-    messages: any
+    messages: Message[]
   ) {
     return updateCall.set({ messages, status: 'idle' } as any);
   }

@@ -13,9 +13,11 @@ export type EventTypes = keyof EventBusEvents;
  * and send them to Sentry.
  * @param handler The handler function
  */
-export const EventBridgeWrapper = <T extends EventTypes>(
+export function EventBridgeWrapper<T extends EventTypes>(
   handler: EventBridgeHandler<EventTypes, EventBusEvents[T], any>
-) => handler;
+) {
+  return handler;
+}
 
 const EBClient = new EventBridgeClient({});
 
@@ -25,16 +27,16 @@ const EBClient = new EventBridgeClient({});
  * @param eventBusName The name of the event bus to use
  * @returns
  */
-export function generateEventBusHelpers(source: string, eventBusName: string) {
+export function generateEventBusHelpers<T extends EventTypes>(
+  source: string,
+  eventBusName: string
+) {
   /**
    * Publish an event to EventBridge.
    * @param type The type of event, e.g. 'users.created' or 'notifications.sent'
    * @param properties The properties of the event to send, e.g. the userId
    */
-  async function publishEvent<T extends EventTypes>(
-    type: T,
-    properties: EventBusEvents[T]
-  ) {
+  async function publishEvent(type: T, properties: EventBusEvents[T]) {
     const command = new PutEventsCommand({
       Entries: [
         {

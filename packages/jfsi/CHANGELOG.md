@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.11.2
+
+### Patch Changes
+
+- 0f4c6ed: Added event bus helpers
+
 ## 0.11.1
 
 ### Patch Changes

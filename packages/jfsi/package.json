@@ -26,6 +26,7 @@
     "vitest": "^0.28.3"
   },
   "dependencies": {
+    "@aws-sdk/client-eventbridge": "^3.328.0",
     "aws-cdk-lib": "^2.64.0",
     "constructs": "10.1.156",
     "openai": "^3.2.1",

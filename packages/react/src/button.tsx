@@ -121,7 +121,7 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
         disabled || loading ? 'opacity-50 pointer-events-none' : '',
         props.className || ''
       )}>
-      {StartIconComponent && (
+      {StartIconComponent && !loading && (
         <StartIconComponent
           className='-ml-0.5 mr-1.5 h-5 w-5'
           aria-hidden='true'

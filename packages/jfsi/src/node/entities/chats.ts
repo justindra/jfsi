@@ -9,6 +9,10 @@ type GenerateChatEntityDetailsParams<S extends Schema<string, string, string>> =
     chatConfig: S;
   };
 
+export const CHAT_MESSAGE_ROLE = ['system', 'user', 'assistant'] as const;
+
+export type ChatMessageRole = (typeof CHAT_MESSAGE_ROLE)[number];
+
 /**
  * Generate the ElectroDB configuration for a chat system implementation. This
  * is made specifically for a chat between a user and an AI assistant, but it
@@ -64,7 +68,7 @@ export const generateChatEntityDetails = <
             properties: {
               /** The role determines who sent that message */
               role: {
-                type: ['system', 'user', 'assistant'] as const,
+                type: CHAT_MESSAGE_ROLE,
                 required: true,
               },
               content: { type: 'string', required: true },
@@ -72,6 +76,8 @@ export const generateChatEntityDetails = <
               userId: { type: 'string' },
               /** The time the message was sent in as an ISO date */
               timestamp: { type: 'string' },
+              /** Any resources that were used to provide context to this message */
+              resources: { type: 'list', items: { type: 'string' } },
             },
           },
         },
@@ -131,7 +137,7 @@ export const generateChatEntityDetails = <
   }
 
   type Message = {
-    role: 'assistant' | 'user' | 'system';
+    role: ChatMessageRole;
     content: string;
     userId?: string;
     timestamp?: string;

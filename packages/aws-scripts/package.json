@@ -13,9 +13,11 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
+    "@types/yargs": "^17.0.24",
     "vitest": "^0.28.3"
   },
   "dependencies": {
+    "@aws-sdk/client-iam": "^3.332.0",
     "@aws-sdk/client-identitystore": "^3.332.0",
     "@aws-sdk/client-organizations": "^3.332.0",
     "@aws-sdk/client-sso-admin": "^3.332.0",

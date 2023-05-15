@@ -97,7 +97,6 @@ async function findAdminGroup(identitystoreId: string): Promise<Group | null> {
     (val) => val.DisplayName?.toLowerCase() === 'admin'
   );
 
-  console.log(groups);
   if (adminGroup) {
     return adminGroup;
   }
@@ -119,8 +118,6 @@ async function assignGroupToOrganization(
       'No permission sets found, make sure to have permission sets in your root account.'
     );
   }
-
-  console.log(permissionSets);
 
   return ssoAdminClient.send(
     new CreateAccountAssignmentCommand({

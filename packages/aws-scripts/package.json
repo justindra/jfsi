@@ -20,7 +20,9 @@
     "@aws-sdk/client-iam": "^3.332.0",
     "@aws-sdk/client-identitystore": "^3.332.0",
     "@aws-sdk/client-organizations": "^3.332.0",
+    "@aws-sdk/client-route-53": "^3.332.0",
     "@aws-sdk/client-sso-admin": "^3.332.0",
-    "tsx": "^3.12.7"
+    "tsx": "^3.12.7",
+    "yargs": "^17.7.2"
   }
 }

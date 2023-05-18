@@ -1,10 +1,11 @@
 import { AlertWarning } from '../alerts';
 import FacebookLogo from './facebook-logo.png';
+import GithubLogo from './github-logo.png';
 import GoogleLogo from './google-logo.png';
 import { SignInButton } from './sign-in-button';
 import { IS_IN_APP, generateSignInUrl, inApp } from './sign-in-utils';
 
-type Provider = 'google' | 'facebook' | 'jobber';
+type Provider = 'google' | 'facebook' | 'jobber' | 'github';
 
 const LOGO_AND_LABELS: Record<Provider, { logo: any; label: string }> = {
   google: {
@@ -19,6 +20,10 @@ const LOGO_AND_LABELS: Record<Provider, { logo: any; label: string }> = {
     logo: '',
     label: 'Sign in with Jobber',
   },
+  github: {
+    logo: GithubLogo,
+    label: 'Sign in with GitHub',
+  },
 };
 
 export interface AuthSignInPageProps {
@@ -27,7 +32,7 @@ export interface AuthSignInPageProps {
   /** The alt of the logo */
   logoAlt: string;
   /** List of providers that you'd like to use */
-  providers: ('google' | 'facebook' | 'jobber')[];
+  providers: Provider[];
   /** The client id of your application */
   clientId?: string;
   /** The url to your auth service, e.g. https://auth.yourapp.com/authorize */

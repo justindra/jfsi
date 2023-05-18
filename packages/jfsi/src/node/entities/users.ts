@@ -159,7 +159,7 @@ export const generateUserEntityDetails = (
           required: true,
         },
         authProvider: {
-          type: ['google', 'spotify', 'jobber', 'facebook'] as const,
+          type: ['google', 'spotify', 'jobber', 'facebook', 'github'] as const,
           required: true,
         },
         /**

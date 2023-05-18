@@ -1,5 +1,13 @@
 # @jfsi/react
 
+## 0.11.3
+
+### Patch Changes
+
+- 116d107: Loading state should replace the start icon not have both
+- 857b30b: Added GitHub as a login provider
+- a420fc7: Added hero with a desktop screenshot
+
 ## 0.11.2
 
 ## 0.11.1

@@ -1,5 +1,13 @@
 # jfsi
 
+## 0.11.3
+
+### Patch Changes
+
+- 857b30b: Added GitHub as a login provider
+- edc6896: Export Chat message roles to be used by others
+- dfdc558: Fixed typings so that event bridge can be expanded on"
+
 ## 0.11.2
 
 ### Patch Changes

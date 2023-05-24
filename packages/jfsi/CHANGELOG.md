@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.11.7
+
+### Patch Changes
+
+- 78563c5: Upgrade aws-cdk-lib and sst
+
 ## 0.11.6
 
 ### Patch Changes

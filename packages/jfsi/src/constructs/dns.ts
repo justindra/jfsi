@@ -13,6 +13,7 @@ type GoogleDNSRecordsParams = {
 export class GoogleDNSRecords {
   constructor(
     { app, stack }: StackContext,
+    id: string,
     {
       domainName,
       googleSearchConsoleDomainVerification,
@@ -22,7 +23,7 @@ export class GoogleDNSRecords {
   ) {
     if (!isProduction(app.stage)) return;
 
-    const hostedZone = HostedZone.fromLookup(stack, 'RootHostedZone', {
+    const hostedZone = HostedZone.fromLookup(stack, `${id}RootHostedZone`, {
       domainName,
     });
 
@@ -34,7 +35,7 @@ export class GoogleDNSRecords {
 
     // If domain verfication values were provided, then set them all
     if (domainVerificationValues.length) {
-      new TxtRecord(stack, 'SiteVerificationRecords', {
+      new TxtRecord(stack, `${id}SiteVerificationRecords`, {
         zone: hostedZone,
         values: domainVerificationValues,
         ttl: Duration.days(1),
@@ -44,7 +45,7 @@ export class GoogleDNSRecords {
 
     if (enableGmail) {
       // Gmail MX records for Google Workspace
-      new MxRecord(stack, 'GmailMxRecord', {
+      new MxRecord(stack, `${id}GmailMxRecord`, {
         zone: hostedZone,
         values: [
           { hostName: 'ASPMX.L.GOOGLE.COM.', priority: 1 },

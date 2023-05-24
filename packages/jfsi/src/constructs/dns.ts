@@ -58,5 +58,7 @@ export class GoogleDNSRecords {
         comment: 'Gmail MX Records',
       });
     }
+
+    return { hostedZone };
   }
 }

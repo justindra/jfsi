@@ -1,5 +1,10 @@
 import { Duration } from 'aws-cdk-lib';
-import { HostedZone, MxRecord, TxtRecord } from 'aws-cdk-lib/aws-route53';
+import {
+  HostedZone,
+  IHostedZone,
+  MxRecord,
+  TxtRecord,
+} from 'aws-cdk-lib/aws-route53';
 import type { StackContext } from 'sst/constructs';
 import { isProduction } from './stage.js';
 
@@ -11,6 +16,8 @@ type GoogleDNSRecordsParams = {
 };
 
 export class GoogleDNSRecords {
+  hostedZone?: IHostedZone;
+
   constructor(
     { app, stack }: StackContext,
     id: string,
@@ -23,7 +30,7 @@ export class GoogleDNSRecords {
   ) {
     if (!isProduction(app.stage)) return;
 
-    const hostedZone = HostedZone.fromLookup(stack, `${id}RootHostedZone`, {
+    this.hostedZone = HostedZone.fromLookup(stack, `${id}RootHostedZone`, {
       domainName,
     });
 
@@ -36,7 +43,7 @@ export class GoogleDNSRecords {
     // If domain verfication values were provided, then set them all
     if (domainVerificationValues.length) {
       new TxtRecord(stack, `${id}SiteVerificationRecords`, {
-        zone: hostedZone,
+        zone: this.hostedZone,
         values: domainVerificationValues,
         ttl: Duration.days(1),
         comment: 'Google Site Verification',
@@ -46,7 +53,7 @@ export class GoogleDNSRecords {
     if (enableGmail) {
       // Gmail MX records for Google Workspace
       new MxRecord(stack, `${id}GmailMxRecord`, {
-        zone: hostedZone,
+        zone: this.hostedZone,
         values: [
           { hostName: 'ASPMX.L.GOOGLE.COM.', priority: 1 },
           { hostName: 'ALT1.ASPMX.L.GOOGLE.COM.', priority: 5 },
@@ -58,7 +65,5 @@ export class GoogleDNSRecords {
         comment: 'Gmail MX Records',
       });
     }
-
-    return { hostedZone };
   }
 }

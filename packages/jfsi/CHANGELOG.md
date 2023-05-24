@@ -1,5 +1,12 @@
 # jfsi
 
+## 0.11.5
+
+### Patch Changes
+
+- cc34c52: Return the hosted zone so it can be used by others
+- cd19818: Fix GoogleDNSRecords to allow for multiple usages by setting the id"
+
 ## 0.11.4
 
 ### Patch Changes

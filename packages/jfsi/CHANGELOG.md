@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.11.4
+
+### Patch Changes
+
+- 48bd76e: Moved SST into devDeps
+
 ## 0.11.3
 
 ### Patch Changes

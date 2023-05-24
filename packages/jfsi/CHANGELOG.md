@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.11.6
+
+### Patch Changes
+
+- fd83eb0: Set hostedzone as a property on the class
+
 ## 0.11.5
 
 ### Patch Changes

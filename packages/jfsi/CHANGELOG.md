@@ -1,5 +1,7 @@
 # jfsi
 
+## 0.12.0
+
 ## 0.11.7
 
 ### Patch Changes

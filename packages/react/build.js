@@ -14,10 +14,21 @@ const shared = {
   sourcemap: true,
 };
 
-build({
+await build({
   ...shared,
   format: 'esm',
   outfile: './dist/index.esm.js',
+  target: ['esnext', 'node16'],
+  loader: {
+    '.png': 'dataurl',
+  },
+});
+
+await build({
+  ...shared,
+  entryPoints: ['src/utils.ts'],
+  format: 'esm',
+  outfile: './dist/utils.esm.js',
   target: ['esnext', 'node16'],
   loader: {
     '.png': 'dataurl',

@@ -3,11 +3,20 @@ set -e
 
 # Build the packages
 pnpm build
-# Copy package.json and readme into the dist
+
+# jfsi
+## Copy package.json and readme into the dist
 cp packages/jfsi/package.json packages/jfsi/dist/package.json
 cp README.md packages/jfsi/dist/README.md
-# Remove the publish config inside of package.json
+## Remove the publish config inside of package.json
 sed -i.bak -e '2,5d' packages/jfsi/dist/package.json
+
+# @jfsi/react
+## Copy package.json and readme into the dist
+cp packages/react/package.json packages/react/dist/package.json
+cp README.md packages/react/dist/README.md
+## Remove the publish config inside of package.json
+sed -i.bak -e '2,5d' packages/react/dist/package.json
 
 # Delete all test files
 find packages/jfsi/dist -type f -name "*.test.js" -delete 

@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.12.0
+
+### Minor Changes
+
+- 549d0f5: Export utils separately
+
 ## 0.11.7
 
 ## 0.11.6

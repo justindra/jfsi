@@ -1,7 +1,16 @@
 import type { App } from 'sst/constructs';
 import { isProduction } from './stage.js';
 
-export const generateDomainUtils = (rootDomainName: string) => {
+/**
+ * Generate the domain utils for the SST App
+ * @param rootDomainName The root domain name for the SST App
+ * @param defaultLocalhost The default localhost URL to use
+ * @returns
+ */
+export const generateDomainUtils = (
+  rootDomainName: string,
+  defaultLocalhost: string = 'http://localhost:3000'
+) => {
   /**
    * Get the app's domain name for the SST App
    * @param app The current SST App to get the URL for
@@ -21,9 +30,7 @@ export const generateDomainUtils = (rootDomainName: string) => {
    * @param subdomain The optional subdomain to use
    */
   const getWebUrl = (app: App, subdomain?: string) =>
-    app.local
-      ? 'http://localhost:3000'
-      : `https://${getWebDomain(app, subdomain)}`;
+    app.local ? defaultLocalhost : `https://${getWebDomain(app, subdomain)}`;
 
   /**
    * Get the API Domain for the SST App

@@ -1,5 +1,12 @@
 # jfsi
 
+## 0.12.1
+
+### Patch Changes
+
+- e300855: Allow to specifiy localhost
+- 4c56682: Upgraded SST
+
 ## 0.12.0
 
 ## 0.11.7

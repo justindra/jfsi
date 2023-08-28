@@ -24,13 +24,25 @@ await build({
   },
 });
 
-await build({
-  ...shared,
-  entryPoints: ['src/utils.ts'],
-  format: 'esm',
-  outfile: './dist/utils.esm.js',
-  target: ['esnext', 'node16'],
-  loader: {
-    '.png': 'dataurl',
-  },
+[
+  'utils.ts',
+  'alerts.tsx',
+  'button.tsx',
+  'empty.tsx',
+  'icons.tsx',
+  'modal.tsx',
+].forEach(async (entryFile) => {
+  // Replace .ts or .tsx with .js
+  const outfile = entryFile.replace(/\.tsx?$/, '.esm.js');
+
+  await build({
+    ...shared,
+    entryPoints: [`src/${entryFile}`],
+    format: 'esm',
+    outfile: `./dist/${outfile}`,
+    target: ['esnext', 'node16'],
+    loader: {
+      '.png': 'dataurl',
+    },
+  });
 });

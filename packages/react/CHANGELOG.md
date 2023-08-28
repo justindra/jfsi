@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.12.2
+
+### Patch Changes
+
+- 1fe7059: Exported out individual components in root
+
 ## 0.12.1
 
 ## 0.12.0

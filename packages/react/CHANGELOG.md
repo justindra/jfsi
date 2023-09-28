@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.12.4
+
+### Patch Changes
+
+- 6dbd51b: Fix exports should not have esm
+
 ## 0.12.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.12.3
+
+### Patch Changes
+
+- 203b6c2: Fix wrong exports
+
 ## 0.12.2
 
 ### Patch Changes

@@ -17,7 +17,7 @@ const shared = {
 await build({
   ...shared,
   format: 'esm',
-  outfile: './dist/index.esm.js',
+  outfile: './dist/index.js',
   target: ['esnext', 'node16'],
   loader: {
     '.png': 'dataurl',
@@ -33,7 +33,7 @@ await build({
   'modal.tsx',
 ].forEach(async (entryFile) => {
   // Replace .ts or .tsx with .js
-  const outfile = entryFile.replace(/\.tsx?$/, '.esm.js');
+  const outfile = entryFile.replace(/\.tsx?$/, '.js');
 
   await build({
     ...shared,

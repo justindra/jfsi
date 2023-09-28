@@ -7,10 +7,10 @@
   "version": "0.12.2",
   "license": "MIT",
   "type": "module",
-  "main": "dist/index.esm.js",
+  "main": "index.esm.js",
   "exports": {
     "./utils": "./utils.esm.js",
-    ".": "./dist/index.esm.js",
+    ".": "./index.esm.js",
     "./*": "./*"
   },
   "scripts": {

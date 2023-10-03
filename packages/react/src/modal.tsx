@@ -4,7 +4,7 @@ import React, { Fragment } from 'react';
 type ModalProps = React.PropsWithChildren<{
   open: boolean;
   setOpen: (open: boolean) => void;
-  actions: React.ReactNode;
+  actions?: React.ReactNode;
 }>;
 
 export const Modal: React.FC<ModalProps> = ({
@@ -39,9 +39,11 @@ export const Modal: React.FC<ModalProps> = ({
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
               <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
                 {children}
-                <div className='mt-5 sm:mt-4 sm:flex sm:flex-row-reverse gap-3'>
-                  {actions}
-                </div>
+                {actions && (
+                  <div className='mt-5 sm:mt-4 sm:flex sm:flex-row-reverse gap-3'>
+                    {actions}
+                  </div>
+                )}
               </Dialog.Panel>
             </Transition.Child>
           </div>

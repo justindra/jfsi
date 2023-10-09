@@ -10,6 +10,7 @@
   "main": "index.js",
   "exports": {
     "./utils": "./utils.js",
+    "./hooks": "./hooks.js",
     ".": "./index.js",
     "./*": "./*"
   },

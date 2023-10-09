@@ -26,6 +26,7 @@ await build({
 
 [
   'utils.ts',
+  'hooks.ts',
   'alerts.tsx',
   'button.tsx',
   'empty.tsx',

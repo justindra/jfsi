@@ -1,5 +1,15 @@
 # @jfsi/react
 
+## 0.13.0
+
+### Minor Changes
+
+- 19546af: Added useEnhancedReducer hook
+
+### Patch Changes
+
+- fdfc844: Modal actions should be optional
+
 ## 0.12.4
 
 ### Patch Changes

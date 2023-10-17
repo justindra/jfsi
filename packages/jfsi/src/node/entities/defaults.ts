@@ -1,14 +1,18 @@
 export const AUDIT_FIELDS = {
   createdAt: {
     type: 'string',
+    default: () => new Date().toISOString(),
     set: () => new Date().toISOString(),
     readOnly: true,
+    required: true,
   },
   updatedAt: {
     type: 'string',
     watch: '*',
+    default: () => new Date().toISOString(),
     set: () => new Date().toISOString(),
     readOnly: true,
+    required: true,
   },
   createdBy: {
     type: 'string',

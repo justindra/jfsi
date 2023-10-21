@@ -33,10 +33,12 @@
   "dependencies": {
     "@aws-sdk/client-eventbridge": "^3.328.0",
     "constructs": "10.2.69",
+    "csvtojson": "^2.0.10",
     "openai": "^3.2.1"
   },
   "peerDependencies": {
     "aws-cdk-lib": "*",
+    "csvtojson": "*",
     "electrodb": "*",
     "luxon": "*",
     "sst": "*",

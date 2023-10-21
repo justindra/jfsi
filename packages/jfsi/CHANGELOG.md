@@ -1,5 +1,16 @@
 # jfsi
 
+## 0.15.0
+
+### Minor Changes
+
+- 5abc183: Added file i/o utilities
+- 54ca3a3: Added type utilities
+
+### Patch Changes
+
+- 4f24d26: Set audit fields to be required and have a default
+
 ## 0.14.0
 
 ### Minor Changes

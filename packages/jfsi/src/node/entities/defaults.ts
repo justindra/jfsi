@@ -4,7 +4,6 @@ export const AUDIT_FIELDS = {
     default: () => new Date().toISOString(),
     set: () => new Date().toISOString(),
     readOnly: true,
-    required: true,
   },
   updatedAt: {
     type: 'string',
@@ -12,7 +11,6 @@ export const AUDIT_FIELDS = {
     default: () => new Date().toISOString(),
     set: () => new Date().toISOString(),
     readOnly: true,
-    required: true,
   },
   createdBy: {
     type: 'string',

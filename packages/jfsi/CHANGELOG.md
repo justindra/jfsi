@@ -1,5 +1,17 @@
 # jfsi
 
+## 0.16.0
+
+### Minor Changes
+
+- 299e519: Added helper to get the dirname easily
+- 4346a4b: Added markdown file loader
+
+### Patch Changes
+
+- 726577e: Remove required for AUDIT_FIELDS
+- 599f0d3: Add link as a provider
+
 ## 0.15.0
 
 ### Minor Changes

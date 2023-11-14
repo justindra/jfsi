@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.16.1
+
+### Patch Changes
+
+- b1e89e1: Added variants for button and export the prop types
+
 ## 0.16.0
 
 ## 0.15.0

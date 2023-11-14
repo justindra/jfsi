@@ -1,17 +1,36 @@
 import type { HeroIcon } from './icons';
 import { classNames } from './utils';
 
+type ButtonVariant =
+  | 'primary'
+  | 'default'
+  | 'none'
+  | 'success'
+  | 'danger'
+  | 'warning';
+type ButtonSize = 'sm' | 'md' | 'lg';
+
 function getColourClasses(
-  variant: 'primary' | 'default'
+  variant: ButtonVariant
 ): NonNullable<React.HTMLAttributes<HTMLElement>['className']> {
+  if (variant === 'none') return 'ring-gray-300';
   if (variant === 'primary') {
     return 'bg-primary-600 hover:bg-primary-500 text-white ring-primary-500';
+  }
+  if (variant === 'success') {
+    return 'bg-green-600 hover:bg-green-500 text-white ring-green-500';
+  }
+  if (variant === 'warning') {
+    return 'bg-yellow-600 hover:bg-yellow-500 text-white ring-yellow-500';
+  }
+  if (variant === 'danger') {
+    return 'bg-red-600 hover:bg-red-500 text-white ring-red-500';
   }
   return 'bg-white hover:bg-gray-50 text-gray-900 ring-gray-300';
 }
 
 function getSizeClasses(
-  size: 'sm' | 'md' | 'lg'
+  size: ButtonSize
 ): NonNullable<React.HTMLAttributes<HTMLElement>['className']> {
   if (size === 'lg') return 'px-3.5 py-2.5';
   return 'py-2 px-3';
@@ -38,15 +57,15 @@ const LoadingSpinner: React.FC = () => (
 );
 
 type BaseButtonProps = {
-  variant?: 'primary' | 'default';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
   startIcon?: HeroIcon;
   endIcon?: HeroIcon;
 };
 
-type ButtonProps = React.PropsWithChildren<
+export type ButtonProps = React.PropsWithChildren<
   BaseButtonProps & {
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;

@@ -1,3 +1,4 @@
+import React from 'react';
 import type { HeroIcon } from './icons';
 import { classNames } from './utils';
 
@@ -10,7 +11,7 @@ type ButtonVariant =
   | 'warning';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
-function getColourClasses(
+export function getColourClasses(
   variant: ButtonVariant
 ): NonNullable<React.HTMLAttributes<HTMLElement>['className']> {
   if (variant === 'none') return 'ring-gray-300';
@@ -29,7 +30,7 @@ function getColourClasses(
   return 'bg-white hover:bg-gray-50 text-gray-900 ring-gray-300';
 }
 
-function getSizeClasses(
+export function getSizeClasses(
   size: ButtonSize
 ): NonNullable<React.HTMLAttributes<HTMLElement>['className']> {
   if (size === 'lg') return 'px-3.5 py-2.5';
@@ -69,6 +70,7 @@ export type ButtonProps = React.PropsWithChildren<
   BaseButtonProps & {
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+    as?: React.ElementType | React.FC;
   }
 >;
 
@@ -82,14 +84,15 @@ export const Button: React.FC<ButtonProps> = ({
   loading,
   startIcon: StartIconComponent,
   endIcon: EndIconComponent,
+  as: Component = 'button',
 }) => {
   return (
-    <button
+    <Component
       type='button'
       {...buttonProps}
       onClick={onClick}
       className={classNames(
-        'inline-flex items-center rounded-md text-sm font-semibold shadow-sm ring-1 ring-inset ',
+        'inline-flex items-center rounded-md text-sm font-semibold shadow-sm ring-1 ring-inset',
         getColourClasses(variant),
         getSizeClasses(size),
         disabled || loading ? 'opacity-50 pointer-events-none' : '',
@@ -109,7 +112,7 @@ export const Button: React.FC<ButtonProps> = ({
           aria-hidden='true'
         />
       )}
-    </button>
+    </Component>
   );
 };
 
@@ -119,41 +122,6 @@ type LinkButtonProps = React.PropsWithChildren<
   } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >;
 
-export const LinkButton: React.FC<LinkButtonProps> = ({
-  children,
-  onClick,
-  variant = 'default',
-  size = 'md',
-  disabled,
-  loading,
-  startIcon: StartIconComponent,
-  endIcon: EndIconComponent,
-  ...props
-}) => {
-  return (
-    <a
-      {...props}
-      className={classNames(
-        'inline-flex items-center rounded-md text-sm font-semibold shadow-sm ring-1 ring-inset',
-        getColourClasses(variant),
-        getSizeClasses(size),
-        disabled || loading ? 'opacity-50 pointer-events-none' : '',
-        props.className || ''
-      )}>
-      {StartIconComponent && !loading && (
-        <StartIconComponent
-          className='-ml-0.5 mr-1.5 h-5 w-5'
-          aria-hidden='true'
-        />
-      )}
-      {loading && <LoadingSpinner />}
-      {children}
-      {EndIconComponent && (
-        <EndIconComponent
-          className='-mr-0.5 ml-1.5 h-5 w-5'
-          aria-hidden='true'
-        />
-      )}
-    </a>
-  );
+export const LinkButton: React.FC<LinkButtonProps> = ({ ...props }) => {
+  return <Button as='a' {...props} />;
 };

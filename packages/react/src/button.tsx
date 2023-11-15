@@ -98,7 +98,7 @@ export const Button: React.FC<ButtonProps> = ({
         disabled || loading ? 'opacity-50 pointer-events-none' : '',
         buttonProps.className || ''
       )}>
-      {StartIconComponent && (
+      {!loading && StartIconComponent && (
         <StartIconComponent
           className='-ml-0.5 mr-1.5 h-5 w-5'
           aria-hidden='true'

@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.16.3
+
+### Patch Changes
+
+- 2832960: Set loading to replace the startIconcomponent
+
 ## 0.16.2
 
 ### Patch Changes

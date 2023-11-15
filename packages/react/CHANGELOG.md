@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.16.2
+
+### Patch Changes
+
+- 72f108f: Export out helper functions and set Button to allow "as"
+
 ## 0.16.1
 
 ### Patch Changes

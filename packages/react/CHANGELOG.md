@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.17.0
+
+### Minor Changes
+
+- d81bb6b: Added number field type
+
 ## 0.16.4
 
 ### Patch Changes

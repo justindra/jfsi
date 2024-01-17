@@ -14,6 +14,7 @@ type FieldNumberProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = FieldBaseProps & {
   controlProps: UseControllerProps<TFieldValues, TName>;
+  suffix?: string;
 };
 
 export const FieldNumber = <
@@ -46,18 +47,26 @@ export const FieldNumber = <
   const error = fieldState.error?.message || props.error;
   return (
     <FieldBase {...props} error={error}>
-      <input
-        type='number'
-        id={props.name}
-        {...field}
-        className={classNames(
-          'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset  placeholder:text-gray-400 dark:placeholder:text-initial focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
-          error
-            ? 'ring-red-500 focus:ring-red-500'
-            : 'ring-gray-300 dark:ring-white/10 focus:ring-primary-600 dark:focus:ring-primary-500'
+      <div className='flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 sm:max-w-md dark:bg-white/5'>
+        <input
+          type='number'
+          id={props.name}
+          {...field}
+          className={classNames(
+            'block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6',
+            error
+              ? 'ring-red-500 focus:ring-red-500'
+              : 'ring-gray-300 dark:ring-white/10 focus:ring-primary-600 dark:focus:ring-primary-500',
+            props.suffix ? 'pr-1' : 'pr-3'
+          )}
+          placeholder={props.placeholder}
+        />
+        {props.suffix && (
+          <span className='flex select-none items-center pr-3 text-gray-500 sm:text-sm'>
+            {props.suffix}
+          </span>
         )}
-        placeholder={props.placeholder}
-      />
+      </div>
     </FieldBase>
   );
 };

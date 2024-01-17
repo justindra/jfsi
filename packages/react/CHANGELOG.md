@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.16.4
+
+### Patch Changes
+
+- c7e58e0: Export out the different modules
+
 ## 0.16.3
 
 ### Patch Changes

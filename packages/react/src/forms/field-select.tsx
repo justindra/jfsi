@@ -1,6 +1,5 @@
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
-import { Fragment } from 'react';
 import {
   FieldPath,
   FieldValues,
@@ -8,9 +7,10 @@ import {
   useController,
   UseControllerProps,
 } from 'react-hook-form';
+import { Fragment } from 'react';
+import { FieldBase, FieldBaseProps } from '../forms';
 import { HeroIcon } from '../icons';
 import { classNames } from '../utils';
-import { FieldBase, FieldBaseProps } from './field-base';
 
 type FieldSelectProps<
   TFieldValues extends FieldValues = FieldValues,

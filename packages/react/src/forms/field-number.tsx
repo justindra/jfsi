@@ -5,8 +5,8 @@ import {
   useController,
   UseControllerProps,
 } from 'react-hook-form';
+import { FieldBase, FieldBaseProps } from '../forms';
 import { classNames } from '../utils';
-import { FieldBase, FieldBaseProps } from './field-base';
 
 type FieldNumberProps<
   TFieldValues extends FieldValues = FieldValues,

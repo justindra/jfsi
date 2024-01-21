@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.18.0
+
+### Minor Changes
+
+- 839ff1e: Added a select field component
+
 ## 0.17.0
 
 ### Minor Changes

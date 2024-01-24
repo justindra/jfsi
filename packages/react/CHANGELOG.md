@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.18.1
+
+### Patch Changes
+
+- 6af0ca2: Fixed up padding and color on buttons
+
 ## 0.18.0
 
 ### Minor Changes

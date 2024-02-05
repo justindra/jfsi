@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.18.2
+
+### Patch Changes
+
+- 2817a35: Updated buttons to work on dark backgrounds
+
 ## 0.18.1
 
 ### Patch Changes

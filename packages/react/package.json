@@ -9,10 +9,12 @@
   "type": "module",
   "main": "index.js",
   "exports": {
-    "./utils": "./utils.js",
-    "./hooks": "./hooks.js",
+    "./app": "./app/index.js",
+    "./auth": "./auth/index.js",
+    "./forms": "./forms/index.js",
+    "./landing-page": "./landing-page/index.js",
     ".": "./index.js",
-    "./*": "./*/index.js"
+    "./*": "./*"
   },
   "scripts": {
     "test": "vitest --passWithNoTests",

@@ -1,5 +1,12 @@
 # @jfsi/react
 
+## 0.18.3
+
+### Patch Changes
+
+- 7812ae5: Exported the loading spinner as a component
+- d6c22d3: Fix the exports list
+
 ## 0.18.2
 
 ### Patch Changes

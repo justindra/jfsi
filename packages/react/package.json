@@ -12,7 +12,7 @@
     "./utils": "./utils.js",
     "./hooks": "./hooks.js",
     ".": "./index.js",
-    "./*": "./*"
+    "./*": "./*/index.js"
   },
   "scripts": {
     "test": "vitest --passWithNoTests",

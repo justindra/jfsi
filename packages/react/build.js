@@ -41,17 +41,19 @@ const modules = (await fsPromises.readdir('./src', { withFileTypes: true }))
   .filter(Boolean)
   .map((val) => `${val}/index.ts`);
 
+// Get list of modules that are just files in the src directory
+const fileModules = (await fsPromises.readdir('./src', { withFileTypes: true }))
+  .map((val) => {
+    if (val.isDirectory()) return null;
+    return val.name;
+  })
+  // Filter out any files that are not .ts or .tsx and the index file
+  .filter(
+    (val) => Boolean(val) && !['globals.d.ts', 'index.tsx'].includes(val)
+  );
+
 // Build each module entrypoint
-[
-  'utils.ts',
-  'hooks.ts',
-  'alerts.tsx',
-  'button.tsx',
-  'empty.tsx',
-  'icons.tsx',
-  'modal.tsx',
-  ...modules,
-].forEach(async (entryFile) => {
+[...fileModules, ...modules].forEach(async (entryFile) => {
   // Replace .ts or .tsx with .js
   const outfile = entryFile.replace(/\.tsx?$/, '.js');
 

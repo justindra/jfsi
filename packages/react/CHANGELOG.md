@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.18.4
+
+### Patch Changes
+
+- c9d28f8: Fix build to build everything in src folder
+
 ## 0.18.3
 
 ### Patch Changes

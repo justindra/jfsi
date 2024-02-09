@@ -1,6 +1,6 @@
 {
   "name": "@jfsi/aws-scripts",
-  "version": "0.18.3",
+  "version": "0.18.4",
   "license": "MIT",
   "type": "module",
   "main": "index.js",

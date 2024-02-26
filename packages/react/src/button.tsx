@@ -20,8 +20,9 @@ export function getColourClasses(
   if (variant === 'none') {
     if (dark) {
       className = 'bg-transparent text-gray-50 hover:text-gray-300';
+    } else {
+      className = 'bg-transparent text-gray-900 ring-gray-300';
     }
-    className = 'bg-transparent text-gray-900 ring-gray-300';
   } else if (variant === 'primary') {
     className =
       '!bg-primary-600 hover:!bg-primary-500 text-white ring-primary-500';

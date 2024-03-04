@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import type { HeroIcon } from './icons';
 import { LoadingSpinner } from './loading';
 import { classNames } from './utils';
@@ -116,4 +116,40 @@ type LinkButtonProps = React.PropsWithChildren<
 
 export const LinkButton: React.FC<LinkButtonProps> = ({ ...props }) => {
   return <Button as='a' {...props} />;
+};
+
+type ButtonGroupProps = {
+  buttons: Partial<ButtonProps>[];
+  size?: ButtonProps['size'];
+  className?: HTMLAttributes<HTMLSpanElement>['className'];
+};
+
+export const ButtonGroup: React.FC<ButtonGroupProps> = ({
+  buttons,
+  className = '',
+  size,
+}) => {
+  return (
+    <span
+      className={classNames(
+        'isolate inline-flex rounded-md shadow-sm',
+        className
+      )}>
+      {buttons.map((button, index) => (
+        <Button
+          key={index}
+          buttonProps={{
+            className: classNames(
+              index === 0 ? 'rounded-r-none' : '',
+              index === buttons.length - 1 ? 'rounded-l-none' : '',
+              index !== 0 && index !== buttons.length - 1 ? 'rounded-none' : ''
+            ),
+            ...button.buttonProps,
+          }}
+          size={size}
+          {...button}
+        />
+      ))}
+    </span>
+  );
 };

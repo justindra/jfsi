@@ -37,6 +37,9 @@ export const InputCheckbox: React.FC<InputCheckboxProps> = ({
                 {...inputProps}
                 type='checkbox'
                 value={option.value}
+                checked={(inputProps?.value as (string | number)[])?.includes(
+                  option.value
+                )}
               />
             </div>
             <div className='ml-3 text-sm leading-6'>
@@ -60,7 +63,7 @@ export const InputCheckbox: React.FC<InputCheckboxProps> = ({
   );
 };
 
-export type FieldCheckboxProps<
+type FieldCheckboxProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = FieldBaseProps & {
@@ -78,7 +81,7 @@ export const FieldCheckbox = <
 }: FieldCheckboxProps<TFieldValues, TName>) => {
   const { field, fieldState } = useController({
     ...controlProps,
-    defaultValue: (controlProps.defaultValue || '') as PathValue<
+    defaultValue: (controlProps.defaultValue || []) as PathValue<
       TFieldValues,
       TName
     >,
@@ -87,13 +90,17 @@ export const FieldCheckbox = <
 
   const handleOnChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     let newValues = [...value];
+    const newVal = evt.target.value as unknown as TFieldValues;
     if (evt.target.checked) {
-      newValues.push(evt.target.value as unknown as TFieldValues);
+      if (!newValues.includes(newVal)) {
+        newValues.push(evt.target.value as unknown as TFieldValues);
+      }
     } else {
       newValues = newValues.filter(
         (v) => v !== (evt.target.value as unknown as TFieldValues)
       );
     }
+
     field.onChange(newValues);
     setValue(newValues);
   };

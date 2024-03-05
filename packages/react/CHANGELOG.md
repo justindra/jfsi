@@ -1,5 +1,18 @@
 # @jfsi/react
 
+## 0.19.0
+
+### Minor Changes
+
+- aa0349d: Added checkbox input field
+- 59b28c0: Added button group component
+
+### Patch Changes
+
+- d8d736f: Added disabled styling to text field
+- 5e7574c: Updated styling of number and text fields
+- 3aaa58f: Fix dark mode not followed
+
 ## 0.18.4
 
 ### Patch Changes

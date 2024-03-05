@@ -120,13 +120,15 @@ export const LinkButton: React.FC<LinkButtonProps> = ({ ...props }) => {
 
 type ButtonGroupProps = {
   buttons: Partial<ButtonProps>[];
-  size?: ButtonProps['size'];
   className?: HTMLAttributes<HTMLSpanElement>['className'];
+  disabled?: ButtonProps['disabled'];
+  size?: ButtonProps['size'];
 };
 
 export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   buttons,
   className = '',
+  disabled,
   size,
 }) => {
   return (
@@ -146,6 +148,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
             ),
             ...button.buttonProps,
           }}
+          disabled={disabled}
           size={size}
           {...button}
         />

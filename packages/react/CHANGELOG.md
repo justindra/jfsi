@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.19.1
+
+### Patch Changes
+
+- 9d8949c: Add disabled styling to button group
+
 ## 0.19.0
 
 ### Minor Changes

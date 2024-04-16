@@ -1,5 +1,12 @@
 # @jfsi/react
 
+## 0.19.2
+
+### Patch Changes
+
+- b82af63: Allow to set min max and step on number field
+- e6ab68a: Export out input text as well
+
 ## 0.19.1
 
 ### Patch Changes

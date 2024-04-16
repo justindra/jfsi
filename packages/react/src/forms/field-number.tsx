@@ -14,6 +14,9 @@ type FieldNumberProps<
 > = FieldBaseProps & {
   controlProps: UseControllerProps<TFieldValues, TName>;
   suffix?: string;
+  min?: number;
+  max?: number;
+  step?: number;
 };
 
 export const FieldNumber = <
@@ -22,6 +25,9 @@ export const FieldNumber = <
 >({
   controlProps,
   disabled,
+  min,
+  max,
+  step,
   ...props
 }: FieldNumberProps<TFieldValues, TName>) => {
   const { field, fieldState } = useController({
@@ -45,6 +51,9 @@ export const FieldNumber = <
         <input
           type='number'
           id={props.name}
+          min={min}
+          max={max}
+          step={step}
           {...field}
           className={classNames(
             'flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 min-w-0',

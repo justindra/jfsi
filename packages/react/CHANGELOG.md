@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.19.3
+
+### Patch Changes
+
+- a884b4d: Allow setting classname to the dialog panel
+
 ## 0.19.2
 
 ### Patch Changes

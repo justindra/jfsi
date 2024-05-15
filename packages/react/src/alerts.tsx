@@ -9,13 +9,13 @@ import { Button, ButtonProps } from './button';
 import { HeroIcon } from './icons';
 import { classNames } from './utils';
 
-type AlertType = 'success' | 'warning' | 'error' | 'info' | 'default';
+type AlertVariant = 'success' | 'warning' | 'error' | 'info' | 'default';
 
 type ClassColour = NonNullable<
   React.HtmlHTMLAttributes<HTMLDivElement>['className']
 >;
 
-function getColours(type: AlertType): {
+function getColours(variant: AlertVariant): {
   icon: HeroIcon;
   bgColour: ClassColour;
   iconColour: ClassColour;
@@ -23,7 +23,7 @@ function getColours(type: AlertType): {
   messageColour: ClassColour;
   buttonVariant: NonNullable<ButtonProps['variant']>;
 } {
-  switch (type) {
+  switch (variant) {
     case 'success':
       return {
         icon: CheckCircleIcon as HeroIcon,
@@ -73,11 +73,11 @@ function getColours(type: AlertType): {
 }
 
 export const Alert: React.FC<{
+  variant: AlertVariant;
   title: React.ReactNode;
   message: React.ReactNode;
-  type: AlertType;
   action?: ButtonProps;
-}> = ({ title, message, type, action }) => {
+}> = ({ title, message, variant: type, action }) => {
   const colours = useMemo(() => getColours(type), [type]);
 
   return (
@@ -117,5 +117,5 @@ export const AlertWarning: React.FC<{
   title: React.ReactNode;
   message: React.ReactNode;
 }> = ({ title, message }) => {
-  return <Alert title={title} message={message} type='warning' />;
+  return <Alert title={title} message={message} variant='warning' />;
 };

@@ -1,5 +1,15 @@
 # @jfsi/react
 
+## 0.20.0
+
+### Minor Changes
+
+- 4fa3aeb: Added an error alert and replace old AlertWarning type
+
+### Patch Changes
+
+- 3eb611d: Fix forward ref missing
+
 ## 0.19.3
 
 ### Patch Changes

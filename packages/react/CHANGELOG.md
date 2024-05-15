@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.20.1
+
+### Patch Changes
+
+- 76c774f: Replace type with variant to keep it consistent
+
 ## 0.20.0
 
 ### Minor Changes

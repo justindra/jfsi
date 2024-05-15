@@ -9,7 +9,8 @@ type ButtonVariant =
   | 'none'
   | 'success'
   | 'danger'
-  | 'warning';
+  | 'warning'
+  | 'info';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 export function getColourClasses(
@@ -33,6 +34,8 @@ export function getColourClasses(
       '!bg-yellow-600 hover:!bg-yellow-500 text-white ring-yellow-500';
   } else if (variant === 'danger') {
     className = '!bg-red-600 hover:!bg-red-500 text-white ring-red-500';
+  } else if (variant === 'info') {
+    className = '!bg-blue-600 hover:!bg-blue-500 text-white ring-blue-500';
   } else {
     className = 'bg-white hover:bg-gray-50 text-gray-900 ring-gray-300';
   }

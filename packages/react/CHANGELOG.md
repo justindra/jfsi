@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.20.2
+
+### Patch Changes
+
+- 209e0e0: Fix overflow on alerts
+
 ## 0.20.1
 
 ### Patch Changes

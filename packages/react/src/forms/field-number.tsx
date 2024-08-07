@@ -13,6 +13,7 @@ type FieldNumberProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = FieldBaseProps & {
   controlProps: UseControllerProps<TFieldValues, TName>;
+  prefix?: string;
   suffix?: string;
   min?: number;
   max?: number;
@@ -48,6 +49,11 @@ export const FieldNumber = <
             : 'ring-gray-300 dark:ring-white/10 focus-within:ring-primary-600 dark:focus-within:ring-primary-500',
           disabled ? '!bg-gray-50 !ring-gray-200' : ''
         )}>
+        {props.prefix && (
+          <span className='select-none pl-3 text-gray-500 sm:text-sm'>
+            {props.prefix}
+          </span>
+        )}
         <input
           type='number'
           id={props.name}
@@ -57,6 +63,7 @@ export const FieldNumber = <
           {...field}
           className={classNames(
             'flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 min-w-0',
+            props.prefix ? 'pl-1' : 'pl-3',
             props.suffix ? 'pr-1' : 'pr-3',
             'disabled:cursor-not-allowed disabled:text-gray-500'
           )}

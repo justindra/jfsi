@@ -1,5 +1,12 @@
 # @jfsi/react
 
+## 0.20.3
+
+### Patch Changes
+
+- 4998ae0: Added prefix option to FieldNumber
+- 4b17d4d: Export out InputNumber as well as FieldNumber
+
 ## 0.20.2
 
 ### Patch Changes

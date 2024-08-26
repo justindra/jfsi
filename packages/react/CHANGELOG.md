@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.20.4
+
+### Patch Changes
+
+- 62ddd55: Fix alert should not have overflow-auto
+
 ## 0.20.3
 
 ### Patch Changes

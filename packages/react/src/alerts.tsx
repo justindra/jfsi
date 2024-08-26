@@ -89,7 +89,7 @@ export const Alert: React.FC<{
             aria-hidden='true'
           />
         </div>
-        <div className='ml-3 overflow-auto'>
+        <div className='ml-3'>
           <h3
             className={classNames('text-sm font-medium', colours.titleColour)}>
             {title}

@@ -4,7 +4,7 @@
     "access": "public"
   },
   "name": "jfsi",
-  "version": "0.20.4",
+  "version": "0.20.5",
   "license": "MIT",
   "type": "module",
   "main": "index.js",

@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.20.5
+
+### Patch Changes
+
+- f8fb0be: Set overflow auto on container
+
 ## 0.20.4
 
 ### Patch Changes

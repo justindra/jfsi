@@ -22,7 +22,7 @@
     "build": "node build.js && tsc --emitDeclarationOnly --outDir dist"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.13",
+    "@headlessui/react": "^2.1.9",
     "@heroicons/react": "^2.0.16",
     "detect-inapp": "^1.4.0",
     "js-cookie": "^3.0.5",

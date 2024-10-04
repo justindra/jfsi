@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Transition, TransitionChild } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { classNames } from '../utils';
 import type { ImageProps, NavigationList } from './types';
@@ -19,9 +19,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   return (
     <>
-      <Transition.Root show={open} as={Fragment}>
+      <Transition show={open} as={Fragment}>
         <Dialog as='div' className='relative z-40 lg:hidden' onClose={onClose}>
-          <Transition.Child
+          <TransitionChild
             as={Fragment}
             enter='transition-opacity ease-linear duration-300'
             enterFrom='opacity-0'
@@ -30,10 +30,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             leaveFrom='opacity-100'
             leaveTo='opacity-0'>
             <div className='fixed inset-0 bg-gray-600 bg-opacity-75' />
-          </Transition.Child>
+          </TransitionChild>
 
           <div className='fixed inset-0 z-40 flex'>
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter='transition ease-in-out duration-300 transform'
               enterFrom='-translate-x-full'
@@ -42,7 +42,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               leaveFrom='translate-x-0'
               leaveTo='-translate-x-full'>
               <Dialog.Panel className='relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5 pb-4'>
-                <Transition.Child
+                <TransitionChild
                   as={Fragment}
                   enter='ease-in-out duration-300'
                   enterFrom='opacity-0'
@@ -62,7 +62,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       />
                     </button>
                   </div>
-                </Transition.Child>
+                </TransitionChild>
                 <div className='flex flex-shrink-0 items-center px-4'>
                   <img className='h-8 w-auto' {...company} />
                 </div>
@@ -95,13 +95,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </nav>
                 </div>
               </Dialog.Panel>
-            </Transition.Child>
+            </TransitionChild>
             <div className='w-14 flex-shrink-0'>
               {/* Dummy element to force sidebar to shrink to fit close icon */}
             </div>
           </div>
         </Dialog>
-      </Transition.Root>
+      </Transition>
 
       {/* Static sidebar for desktop */}
       <div className='hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col'>

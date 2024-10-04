@@ -17,6 +17,8 @@ type FieldFileUploadProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = FieldBaseProps & {
   controlProps: UseControllerProps<TFieldValues, TName>;
+  acceptedFileTypes?: string[];
+  maxFileSize?: string;
 };
 
 export const FieldFileUpload = <
@@ -24,6 +26,8 @@ export const FieldFileUpload = <
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >({
   controlProps,
+  acceptedFileTypes = ['pdf', 'md'],
+  maxFileSize = '10MB',
   ...props
 }: FieldFileUploadProps<TFieldValues, TName>) => {
   const { field, fieldState } = useController({
@@ -73,7 +77,10 @@ export const FieldFileUpload = <
             </label>
             <p className='inline pl-1'>or drag and drop your files here</p>
           </div>
-          <p className='text-xs leading-5 text-gray-600'>PDF, MD up to 10MB</p>
+          <p className='text-xs leading-5 text-gray-600'>
+            {acceptedFileTypes.map((val) => val.toUpperCase()).join(',')} up to
+            {maxFileSize}
+          </p>
         </div>
       </div>
       <ol className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-3'>

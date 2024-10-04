@@ -4,7 +4,7 @@
     "access": "public"
   },
   "name": "@jfsi/react",
-  "version": "0.21.0",
+  "version": "0.21.1",
   "license": "MIT",
   "type": "module",
   "main": "index.js",

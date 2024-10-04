@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.21.1
+
+### Patch Changes
+
+- 9b1be06: Upgrade turbo repo to fix build issues
+
 ## 0.21.0
 
 ## 0.20.5

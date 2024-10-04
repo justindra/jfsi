@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.21.0
+
+### Minor Changes
+
+- de238f8: Upgraded headlessui to latest version
+
 ## 0.20.5
 
 ### Patch Changes

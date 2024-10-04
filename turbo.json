@@ -1,6 +1,5 @@
 {
-  "baseBranch": "main",
-  "pipeline": {
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist"]

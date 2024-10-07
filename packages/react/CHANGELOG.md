@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.21.2
+
+### Patch Changes
+
+- fdb712c: Export out InputSelect for more customization
+
 ## 0.21.1
 
 ### Patch Changes

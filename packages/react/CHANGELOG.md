@@ -1,5 +1,18 @@
 # @jfsi/react
 
+## 0.22.0
+
+### Minor Changes
+
+- 253d81c: Remove the exports from index"
+- fdeef45: Added a new toggle component to forms
+
+### Patch Changes
+
+- e015cd7: Updated alerts to have classname prop
+- 7d98a3a: Added disabled styling to textarea
+- 883c688: Alert should not require title
+
 ## 0.21.2
 
 ### Patch Changes

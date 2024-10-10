@@ -74,7 +74,7 @@ function getColours(variant: AlertVariant): {
 
 export const Alert: React.FC<{
   variant: AlertVariant;
-  title: React.ReactNode;
+  title?: React.ReactNode;
   message: React.ReactNode;
   action?: ButtonProps;
   className?: HTMLAttributes<HTMLDivElement>['className'];
@@ -96,10 +96,15 @@ export const Alert: React.FC<{
           />
         </div>
         <div className='ml-3 overflow-auto'>
-          <h3
-            className={classNames('text-sm font-medium', colours.titleColour)}>
-            {title}
-          </h3>
+          {title && (
+            <h3
+              className={classNames(
+                'text-sm font-medium',
+                colours.titleColour
+              )}>
+              {title}
+            </h3>
+          )}
           <div className={classNames('mt-2 text-sm', colours.messageColour)}>
             {message}
           </div>

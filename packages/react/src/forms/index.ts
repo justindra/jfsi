@@ -5,3 +5,4 @@ export * from './field-number';
 export * from './field-select';
 export * from './field-text';
 export * from './field-textarea';
+export * from './field-toggle';

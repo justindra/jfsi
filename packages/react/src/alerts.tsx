@@ -4,7 +4,7 @@ import {
   InformationCircleIcon,
   XCircleIcon,
 } from '@heroicons/react/20/solid';
-import { useMemo } from 'react';
+import { HTMLAttributes, useMemo } from 'react';
 import { Button, ButtonProps } from './button';
 import { HeroIcon } from './icons';
 import { classNames } from './utils';
@@ -77,11 +77,17 @@ export const Alert: React.FC<{
   title: React.ReactNode;
   message: React.ReactNode;
   action?: ButtonProps;
-}> = ({ title, message, variant: type, action }) => {
+  className?: HTMLAttributes<HTMLDivElement>['className'];
+}> = ({ title, message, variant: type, action, className = '' }) => {
   const colours = useMemo(() => getColours(type), [type]);
 
   return (
-    <div className={classNames('rounded-md p-4 text-left', colours.bgColour)}>
+    <div
+      className={classNames(
+        'rounded-md p-4 text-left',
+        colours.bgColour,
+        className
+      )}>
       <div className='flex'>
         <div className='flex-shrink-0'>
           <colours.icon

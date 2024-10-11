@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.22.1
+
+### Patch Changes
+
+- 9c66f5d: Added warning styling
+
 ## 0.22.0
 
 ### Minor Changes

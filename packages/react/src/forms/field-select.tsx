@@ -29,6 +29,8 @@ export type InputSelectProps = {
   options: InputSelectOption[];
   inGroup?: boolean;
   className?: HTMLAttributes<'div'>['className'];
+  error?: boolean;
+  warning?: boolean;
 };
 
 export const InputSelect: React.FC<InputSelectProps> = ({
@@ -37,6 +39,8 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   options,
   inGroup = false,
   className = '',
+  error,
+  warning,
 }) => {
   return (
     <Listbox value={value} onChange={onChange}>
@@ -44,7 +48,12 @@ export const InputSelect: React.FC<InputSelectProps> = ({
         <ListboxButton
           className={classNames(
             'relative w-full cursor-default bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 sm:text-sm sm:leading-6',
-            inGroup ? 'rounded-none rounded-l-md' : 'rounded-md shadow-sm'
+            inGroup ? 'rounded-none rounded-l-md' : 'rounded-md shadow-sm',
+            error
+              ? 'ring-red-500 focus:ring-red-500'
+              : warning
+              ? 'ring-yellow-500 focus:ring-yellow-500'
+              : 'ring-gray-300 focus:ring-primary-600 dark:focus:ring-primary-500'
           )}>
           <span className='flex items-center'>
             {value && value.icon && (
@@ -124,7 +133,13 @@ export const FieldSelect = <
 
   return (
     <FieldBase {...props} error={error}>
-      <InputSelect value={value} onChange={handleOnChange} options={options} />
+      <InputSelect
+        value={value}
+        onChange={handleOnChange}
+        options={options}
+        error={!!error}
+        warning={!!props.warning}
+      />
     </FieldBase>
   );
 };

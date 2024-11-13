@@ -106,6 +106,7 @@ export type FieldSelectProps<
 > = FieldBaseProps & {
   controlProps: UseControllerProps<TFieldValues, TName>;
   options: InputSelectOption[];
+  inputSelectProps: Partial<InputSelectProps>;
 };
 
 export const FieldSelect = <
@@ -114,6 +115,7 @@ export const FieldSelect = <
 >({
   controlProps,
   options,
+  inputSelectProps,
   ...props
 }: FieldSelectProps<TFieldValues, TName>) => {
   const { field, fieldState } = useController({
@@ -134,6 +136,7 @@ export const FieldSelect = <
   return (
     <FieldBase {...props} error={error}>
       <InputSelect
+        {...inputSelectProps}
         value={value}
         onChange={handleOnChange}
         options={options}

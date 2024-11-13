@@ -159,3 +159,93 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     </span>
   );
 };
+
+export function getIconColourClasses(
+  variant:
+    | 'primary'
+    | 'default'
+    | 'none'
+    | 'success'
+    | 'danger'
+    | 'warning'
+    | 'info',
+  dark: boolean
+): NonNullable<React.HTMLAttributes<HTMLElement>['className']> {
+  let className: string = '';
+  if (variant === 'primary') {
+    className = '!text-primary-600 hover:!text-primary-500';
+  } else if (variant === 'success') {
+    className = '!text-green-600 hover:!text-green-500';
+  } else if (variant === 'warning') {
+    className = '!text-yellow-600 hover:!text-yellow-500';
+  } else if (variant === 'danger') {
+    className = '!text-red-600 hover:!text-red-500';
+  } else if (variant === 'info') {
+    className = '!text-blue-600 hover:!text-blue-500';
+  } else {
+    if (dark) {
+      className = 'text-gray-50 hover:text-gray-300';
+    } else {
+      className = 'hover:text-gray-900 text-gray-900';
+    }
+  }
+
+  return className;
+}
+
+export function getIconSizeClasses(
+  size: 'sm' | 'md' | 'lg'
+): NonNullable<React.HTMLAttributes<HTMLElement>['className']> {
+  if (size === 'lg') return 'h-7 w-7';
+  return 'h-5 w-5';
+}
+
+export type ButtonIconProps = React.PropsWithChildren<
+  Pick<
+    ButtonProps,
+    | 'dark'
+    | 'disabled'
+    | 'loading'
+    | 'size'
+    | 'variant'
+    | 'as'
+    | 'buttonProps'
+    | 'onClick'
+  > & {
+    icon: HeroIcon;
+  }
+>;
+
+export const ButtonIcon: React.FC<ButtonIconProps> = ({
+  onClick,
+  variant = 'default',
+  size = 'md',
+  buttonProps = {},
+  disabled,
+  loading,
+  dark = false,
+  icon: IconComponent,
+  as: Component = 'button',
+}) => {
+  return (
+    <Component
+      type='button'
+      {...buttonProps}
+      onClick={onClick}
+      className={classNames(
+        disabled || loading ? 'opacity-50 pointer-events-none' : '',
+        buttonProps.className || ''
+      )}>
+      {!loading && (
+        <IconComponent
+          className={classNames(
+            getIconSizeClasses(size),
+            getIconColourClasses(variant, dark)
+          )}
+          aria-hidden='true'
+        />
+      )}
+      {loading && <LoadingSpinner className='-ml-1 mr-3 h-5 w-5' />}
+    </Component>
+  );
+};

@@ -1,5 +1,17 @@
 # @jfsi/react
 
+## 0.23.0
+
+### Minor Changes
+
+- d3cf6a2: Added new IconButton component
+
+### Patch Changes
+
+- fd49876: Allow to configure inputSelect component
+- fafb113: When no label is present, don't set the margin top
+- 269d9e6: Fix typings on FieldTextArea
+
 ## 0.22.1
 
 ### Patch Changes

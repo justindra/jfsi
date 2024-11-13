@@ -27,7 +27,7 @@ export const FieldBase: React.FC<FieldBaseProps> = ({
           {label}
         </label>
       )}
-      <div className='mt-2'>{children}</div>
+      <div className={label ? 'mt-2' : ''}>{children}</div>
       {error ? (
         <p className='mt-3 text-sm leading-6 text-red-600 dark:text-red-400'>
           {error}

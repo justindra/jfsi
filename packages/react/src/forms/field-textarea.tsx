@@ -12,7 +12,7 @@ type FieldTextareaProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = FieldBaseProps & {
-  inputProps?: React.InputHTMLAttributes<HTMLTextAreaElement>;
+  inputProps?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
   controlProps: UseControllerProps<TFieldValues, TName>;
 };
 

@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.23.1
+
+### Patch Changes
+
+- e74a581: Set inputSelectProps to be optional
+
 ## 0.23.0
 
 ### Minor Changes

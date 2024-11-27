@@ -25,10 +25,6 @@ export type InputSelectOption = {
   group?: string;
 };
 
-type GroupedInputSelectOption = InputSelectOption & {
-  options?: InputSelectOption[];
-};
-
 type ListOptionProps = {
   opt: InputSelectOption;
   value: InputSelectOption | null;
@@ -60,6 +56,10 @@ const ListOption: React.FC<ListOptionProps> = ({ opt, value }) => {
       </>
     </ListboxOption>
   );
+};
+
+type GroupedInputSelectOption = InputSelectOption & {
+  options?: InputSelectOption[];
 };
 
 export type InputSelectProps = {

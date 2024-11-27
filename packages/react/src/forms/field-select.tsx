@@ -163,9 +163,6 @@ export const InputSelect: React.FC<InputSelectProps> = ({
               )}
             </Fragment>
           ))}
-          {options.map((opt) => (
-            <ListOption key={String(opt.value)} value={value} opt={opt} />
-          ))}
         </ListboxOptions>
       </div>
     </Listbox>

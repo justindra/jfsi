@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.23.2
+
+### Patch Changes
+
+- 9720c17: Updated InputSelect to allow for grouping of options
+
 ## 0.23.1
 
 ### Patch Changes

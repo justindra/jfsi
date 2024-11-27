@@ -1,5 +1,11 @@
 # @jfsi/react
 
+## 0.23.3
+
+### Patch Changes
+
+- 972dc57: Fix duplicated options list
+
 ## 0.23.2
 
 ### Patch Changes

@@ -5,7 +5,7 @@ import {
   ListboxOptions,
 } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
-import { HTMLAttributes } from 'react';
+import React, { Fragment, HTMLAttributes, useMemo } from 'react';
 import {
   FieldPath,
   FieldValues,
@@ -21,6 +21,45 @@ export type InputSelectOption = {
   label: string;
   value: string | number | boolean;
   icon?: HeroIcon;
+  /** If this belongs to a group then specify it */
+  group?: string;
+};
+
+type GroupedInputSelectOption = InputSelectOption & {
+  options?: InputSelectOption[];
+};
+
+type ListOptionProps = {
+  opt: InputSelectOption;
+  value: InputSelectOption | null;
+};
+
+const ListOption: React.FC<ListOptionProps> = ({ opt, value }) => {
+  return (
+    <ListboxOption
+      className='group relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 data-[focus]:bg-primary-600 data-[focus]:text-white'
+      value={opt}
+      data-selected={
+        value && value.value === opt.value && value.group === opt.group
+          ? true
+          : undefined
+      }>
+      <>
+        <div className='flex items-center'>
+          {opt.icon && (
+            <opt.icon className='flex-shrink-0 h-5 w-5 group-data-[selected]:text-gray-400' />
+          )}
+          <span className='group-data-[selected]:font-semibold font-normal ml-3 block truncate'>
+            {opt.label}
+          </span>
+        </div>
+
+        <span className='absolute inset-y-0 right-0 flex items-center pr-4 text-primary-600 group-data-[focus]:text-white [.group:not([data-selected])_&]:hidden'>
+          <CheckIcon aria-hidden='true' className='h-5 w-5' />
+        </span>
+      </>
+    </ListboxOption>
+  );
 };
 
 export type InputSelectProps = {
@@ -42,6 +81,32 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   error,
   warning,
 }) => {
+  const optionsWithGroup = useMemo(() => {
+    const res: GroupedInputSelectOption[] = [];
+
+    options.forEach((opt) => {
+      if (!opt.group) {
+        res.push({
+          label: opt.label,
+          value: opt.value,
+        });
+        return;
+      }
+      const group = res.find((g) => g.label === opt.group);
+      if (group && group.options) {
+        group.options.push(opt);
+      } else {
+        res.push({
+          label: opt.group,
+          value: opt.group,
+          options: [opt],
+        });
+      }
+      return;
+    });
+
+    return res;
+  }, [options]);
   return (
     <Listbox value={value} onChange={onChange}>
       <div className={classNames('relative', className)}>
@@ -60,7 +125,11 @@ export const InputSelect: React.FC<InputSelectProps> = ({
               <value.icon className='flex-shrink-0 h-5 w-5 text-gray-400' />
             )}
             <span className='ml-3 block truncate'>
-              {value ? value.label : 'None selected'}
+              {value
+                ? value.group
+                  ? `${value.group} - ${value.label}`
+                  : value.label
+                : 'None selected'}
             </span>
           </span>
           <span className='pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2'>
@@ -73,26 +142,29 @@ export const InputSelect: React.FC<InputSelectProps> = ({
         <ListboxOptions
           transition
           className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm'>
+          {optionsWithGroup.map((group) => (
+            <Fragment key={String(group.value)}>
+              {group.options ? (
+                <>
+                  <div className='pb-2 pt-3 pl-3 font-semibold'>
+                    {group.label}
+                  </div>
+                  {group.options.map((opt) => (
+                    <ListOption
+                      key={String(opt.value)}
+                      value={value}
+                      opt={opt}
+                    />
+                  ))}
+                  <hr className='divide-solid' />
+                </>
+              ) : (
+                <ListOption value={value} opt={group} />
+              )}
+            </Fragment>
+          ))}
           {options.map((opt) => (
-            <ListboxOption
-              key={String(opt.value)}
-              className='group relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 data-[focus]:bg-primary-600 data-[focus]:text-white'
-              value={opt}>
-              <>
-                <div className='flex items-center'>
-                  {opt.icon && (
-                    <opt.icon className='flex-shrink-0 h-5 w-5 group-data-[selected]:text-gray-400' />
-                  )}
-                  <span className='group-data-[selected]:font-semibold font-normal ml-3 block truncate'>
-                    {opt.label}
-                  </span>
-                </div>
-
-                <span className='absolute inset-y-0 right-0 flex items-center pr-4 text-primary-600 group-data-[focus]:text-white [.group:not([data-selected])_&]:hidden'>
-                  <CheckIcon aria-hidden='true' className='h-5 w-5' />
-                </span>
-              </>
-            </ListboxOption>
+            <ListOption key={String(opt.value)} value={value} opt={opt} />
           ))}
         </ListboxOptions>
       </div>

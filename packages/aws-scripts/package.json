@@ -22,7 +22,8 @@
     "@aws-sdk/client-organizations": "^3.332.0",
     "@aws-sdk/client-route-53": "^3.332.0",
     "@aws-sdk/client-sso-admin": "^3.332.0",
-    "tsx": "^3.12.7",
+    "@aws-sdk/credential-providers": "^3.699.0",
+    "tsx": "^4.19.2",
     "yargs": "^17.7.2"
   }
 }

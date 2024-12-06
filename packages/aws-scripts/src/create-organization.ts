@@ -26,14 +26,28 @@ import {
   ListPermissionSetsCommand,
   CreateAccountAssignmentCommand,
 } from '@aws-sdk/client-sso-admin';
+import { fromIni } from '@aws-sdk/credential-providers';
 
-const NAME = 'unbind';
+const NAME = process.argv[2];
+const PROFILE = process.argv[3] || 'default';
+if (!NAME) {
+  throw new Error('Please provide an organization name as an argument.');
+}
+
+console.log(`Creating organization with name: ${NAME} and profile: ${PROFILE}`);
+
+const credentials = fromIni({ profile: PROFILE });
 
 const orgClient = new OrganizationsClient({
   region: 'us-east-1',
+  credentials,
 });
-const identityStoreClient = new IdentitystoreClient({ region: 'us-west-2' });
-const ssoAdminClient = new SSOAdminClient({ region: 'us-west-2' });
+
+const identityStoreClient = new IdentitystoreClient({
+  region: 'us-west-2',
+  credentials,
+});
+const ssoAdminClient = new SSOAdminClient({ region: 'us-west-2', credentials });
 
 async function findOrganization(name: string): Promise<Account | null> {
   const existingAccounts = await orgClient.send(new ListAccountsCommand({}));
@@ -134,7 +148,7 @@ async function assignGroupToOrganization(
 const instance = await getIdentityStoreInstance();
 
 const org = await findOrCreateOrganization(NAME);
-console.log(`Created organization: ${org}`);
+console.log(`Created organization: ${JSON.stringify(org)}`);
 
 const group = await findAdminGroup(instance.IdentityStoreId || '');
 console.log(`Found admin group: ${group?.GroupId}`);

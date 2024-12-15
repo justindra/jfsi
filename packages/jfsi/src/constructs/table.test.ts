@@ -1,9 +1,8 @@
-import type { App } from 'sst/constructs';
 import { expect, test } from 'vitest';
 import { generateDefaultTableOptions } from './table.js';
 
 test('Default Table Options should return correct number of gsi', () => {
-  const options = generateDefaultTableOptions({ stage: 'prod' } as App, 2);
+  const options = generateDefaultTableOptions({ stage: 'prod' }, 2);
   expect(options.fields).toEqual({
     pk: 'string',
     sk: 'string',

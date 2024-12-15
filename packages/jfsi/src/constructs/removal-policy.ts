@@ -1,5 +1,4 @@
 import { RemovalPolicy } from 'aws-cdk-lib';
-import type { App } from 'sst/constructs';
 import { isProduction } from './stage.js';
 
 /**
@@ -8,5 +7,5 @@ import { isProduction } from './stage.js';
  * @param app The SST App to check
  * @returns
  */
-export const getRemovalPolicy = (app: App): RemovalPolicy =>
+export const getRemovalPolicy = (app: { stage: string }): RemovalPolicy =>
   isProduction(app.stage) ? RemovalPolicy.RETAIN : RemovalPolicy.DESTROY;

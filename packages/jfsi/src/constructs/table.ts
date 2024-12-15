@@ -1,37 +1,60 @@
-import { App, TableProps } from 'sst/constructs';
 import { getRemovalPolicy } from './removal-policy.js';
 
-function generateGsiFields(gsiNumber: number) {
-  const gsiFields: TableProps['fields'] = {};
+type GenericIndex<TPk extends string, TSk extends string> = {
+  [key in TPk | TSk]: string;
+};
+// Helper type to generate keys 'gsi1', 'gsi2', ..., 'gsiN' as a union.
+type GsiKeys<N extends number, Acc extends unknown[] = [unknown]> = 
+  Acc['length'] extends N
+    ? `gsi${Acc['length']}`
+    : `gsi${Acc['length']}` | GsiKeys<N, [...Acc, unknown]>;
+
+function generateGsiFields<const N extends number>(gsiNumber: N) {
+  const gsiFields: Record<string, string> = {};
   new Array(gsiNumber).fill(0).forEach((_, i) => {
     gsiFields[`gsi${i + 1}pk`] = 'string';
     gsiFields[`gsi${i + 1}sk`] = 'string';
   });
-  return gsiFields;
+  return gsiFields as Record<GsiKeys<N>, string>;
 }
 
-function generateGsiGlobalIndexes(gsiNumber: number) {
-  const gsiGlobalIndexes: TableProps['globalIndexes'] = {};
+function generateGsiGlobalIndexes<const N extends number, TPk extends string, TSk extends string>(
+  gsiNumber: N,
+  fieldNames: { pk: TPk; sk: TSk }
+) {
+  const gsiGlobalIndexes: Record<string, GenericIndex<TPk, TSk>> = {};
   new Array(gsiNumber).fill(0).forEach((_, i) => {
-    gsiGlobalIndexes[`gsi${i + 1}`] = {
-      partitionKey: `gsi${i + 1}pk`,
-      sortKey: `gsi${i + 1}sk`,
-    };
+    (gsiGlobalIndexes as any)[`gsi${i + 1}`] = {
+      [fieldNames.pk]: `gsi${i + 1}pk`,
+      [fieldNames.sk]: `gsi${i + 1}sk`,
+    } as GenericIndex<TPk, TSk>;
   });
-  return gsiGlobalIndexes;
+  return gsiGlobalIndexes as Record<GsiKeys<N>, GenericIndex<TPk, TSk>>;
 }
 
 /**
  * Generate default table options to be used with ElectroDB.
  * @param app The SST app.
  * @param gsiNumber The number of GSIs to generate
+ * @param sstVersion The sst version to support
  */
-export function generateDefaultTableOptions(
-  app: App,
-  gsiNumber: number
-): TableProps {
+export function generateDefaultTableOptions<const N extends number, TVersion extends '2' | '3'>(
+  app: { stage: string },
+  gsiNumber: N,
+  sstVersion: TVersion = '2' as TVersion
+) {
+  const pkFieldName = (
+    sstVersion === '2' ? 'partitionKey' : 'hashKey'
+  ) as TVersion extends '2' ? 'partitionKey' : 'hashKey';
+  const skFieldName = (
+    sstVersion === '2' ? 'sortKey' : 'rangeKey'
+  ) as TVersion extends '2' ? 'sortKey' : 'rangeKey';
+
   const gsiFields = generateGsiFields(gsiNumber);
-  const gsiGlobalIndexes = generateGsiGlobalIndexes(gsiNumber);
+  const gsiGlobalIndexes = generateGsiGlobalIndexes(gsiNumber, {
+    pk: pkFieldName,
+    sk: skFieldName,
+  });
 
   return {
     fields: {
@@ -40,12 +63,16 @@ export function generateDefaultTableOptions(
       ...gsiFields,
     },
     primaryIndex: {
-      partitionKey: 'pk',
-      sortKey: 'sk',
-    },
+      [pkFieldName]: 'pk',
+      [skFieldName]: 'sk',
+    } as GenericIndex<typeof pkFieldName, typeof skFieldName>,
     globalIndexes: gsiGlobalIndexes,
-    cdk: {
-      table: { removalPolicy: getRemovalPolicy(app) },
-    },
+    ...(sstVersion === '2'
+      ? {
+          cdk: {
+            table: { removalPolicy: getRemovalPolicy(app) },
+          },
+        }
+      : {}),
   };
 }

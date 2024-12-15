@@ -3,5 +3,3 @@
  * @param stage The stage to check
  */
 export const isProduction = (stage: string) => stage === 'prod';
-
-export const test = 'test';

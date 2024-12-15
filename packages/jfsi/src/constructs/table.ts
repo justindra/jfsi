@@ -1,27 +1,35 @@
 import { getRemovalPolicy } from './removal-policy.js';
 
+// Helper type to generate the keys based on the provided field names
 type GenericIndex<TPk extends string, TSk extends string> = {
   [key in TPk | TSk]: string;
 };
-// Helper type to generate keys 'gsi1', 'gsi2', ..., 'gsiN' as a union.
-type GsiKeys<N extends number, Acc extends unknown[] = [unknown]> = 
-  Acc['length'] extends N
-    ? `gsi${Acc['length']}`
-    : `gsi${Acc['length']}` | GsiKeys<N, [...Acc, unknown]>;
 
-function generateGsiFields<const N extends number>(gsiNumber: N) {
-  const gsiFields: Record<string, string> = {};
+// Helper type to generate keys 'gsi1', 'gsi2', ..., 'gsiN' as a union.
+type GsiKeys<
+  N extends number,
+  Acc extends unknown[] = [unknown]
+> = Acc['length'] extends N
+  ? `gsi${Acc['length']}`
+  : `gsi${Acc['length']}` | GsiKeys<N, [...Acc, unknown]>;
+
+// Helper type to generate keys with suffixes like 'gsi1pk', 'gsi1sk', ..., 'gsiNpk', 'gsiNsk'.
+type GsiFields<N extends number> = `${GsiKeys<N>}pk` | `${GsiKeys<N>}sk`;
+
+function generateGsiFields<N extends number>(gsiNumber: N) {
+  const gsiFields: Record<string, 'string'> = {};
   new Array(gsiNumber).fill(0).forEach((_, i) => {
     gsiFields[`gsi${i + 1}pk`] = 'string';
     gsiFields[`gsi${i + 1}sk`] = 'string';
   });
-  return gsiFields as Record<GsiKeys<N>, string>;
+  return gsiFields as Record<GsiFields<N>, 'string'>;
 }
 
-function generateGsiGlobalIndexes<const N extends number, TPk extends string, TSk extends string>(
-  gsiNumber: N,
-  fieldNames: { pk: TPk; sk: TSk }
-) {
+function generateGsiGlobalIndexes<
+  N extends number,
+  TPk extends string,
+  TSk extends string
+>(gsiNumber: N, fieldNames: { pk: TPk; sk: TSk }) {
   const gsiGlobalIndexes: Record<string, GenericIndex<TPk, TSk>> = {};
   new Array(gsiNumber).fill(0).forEach((_, i) => {
     (gsiGlobalIndexes as any)[`gsi${i + 1}`] = {
@@ -38,7 +46,10 @@ function generateGsiGlobalIndexes<const N extends number, TPk extends string, TS
  * @param gsiNumber The number of GSIs to generate
  * @param sstVersion The sst version to support
  */
-export function generateDefaultTableOptions<const N extends number, TVersion extends '2' | '3'>(
+export function generateDefaultTableOptions<
+  N extends number,
+  TVersion extends '2' | '3' = '2'
+>(
   app: { stage: string },
   gsiNumber: N,
   sstVersion: TVersion = '2' as TVersion
@@ -58,8 +69,8 @@ export function generateDefaultTableOptions<const N extends number, TVersion ext
 
   return {
     fields: {
-      pk: 'string',
-      sk: 'string',
+      pk: 'string' as const,
+      sk: 'string' as const,
       ...gsiFields,
     },
     primaryIndex: {

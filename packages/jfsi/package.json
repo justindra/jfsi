@@ -9,6 +9,7 @@
   "type": "module",
   "main": "index.js",
   "exports": {
+    "./aws/*": "./aws/*.js",
     "./constructs": "./constructs/index.js",
     "./node/*": "./node/*/index.js",
     "./web": "./web/index.js",
@@ -21,6 +22,7 @@
     "build": "tsc"
   },
   "devDependencies": {
+    "@aws-sdk/lib-dynamodb": "^3.713.0",
     "@types/aws-lambda": "^8.10.110",
     "@types/luxon": "^3.3.2",
     "@types/node": "^18.11.18",
@@ -38,6 +40,7 @@
     "openai": "^3.2.1"
   },
   "peerDependencies": {
+    "@aws-sdk/lib-dynamodb": "*",
     "aws-cdk-lib": "*",
     "csvtojson": "*",
     "electrodb": "*",

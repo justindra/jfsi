@@ -140,6 +140,11 @@ export const generateOrganizationEntityDetails = <
           pk: { field: DDB_KEYS.gsi1.partitionKey, composite: ['userId'] },
           sk: { field: DDB_KEYS.gsi1.sortKey, composite: ['organizationId'] },
         },
+        allOrganizations: {
+          index: DDB_KEYS.gsi2.indexName,
+          pk: { field: DDB_KEYS.gsi2.partitionKey, composite: [] },
+          sk: { field: DDB_KEYS.gsi2.sortKey, composite: ['organizationId'] },
+        },
       },
     },
     configuration
@@ -198,6 +203,19 @@ export const generateOrganizationEntityDetails = <
   }
 
   /**
+   * List all users in a particular organization
+   * @param organizationId The id of the organization to list users for
+   * @returns
+   */
+  async function listAllUsersInOrganization(organizationId: string) {
+    const users = await OrganizationUserEntity.query
+      .usersInOrganization({ organizationId })
+      .go({ pages: 'all' });
+
+    return users.data;
+  }
+
+  /**
    * Check whether or not a user is a member of a  particular organization
    * @param userId The id of the user to check
    * @param organizationId The id of the organization to check
@@ -225,8 +243,6 @@ export const generateOrganizationEntityDetails = <
     const user = await Users.createThroughAuthProvider(...params);
 
     // Create the organization for that user to belong in
-    // TODO: Eventually users might be able to join an organization instead of a
-    // new one being created for them.
     const organization = await createOrganization(
       user.userId,
       `${user.fullName || user.firstName || 'New users'}'s organization`
@@ -249,13 +265,50 @@ export const generateOrganizationEntityDetails = <
     return { user, organizations: orgList };
   }
 
+  /**
+   * Add user to an organization
+   * @param userId The id of the user to add
+   * @param organizationId The id of the organization to add the user to
+   * @param role The role of the user in the organization
+   * @returns
+   */
+  async function addUserToOrganization(
+    userId: string,
+    organizationId: string,
+    role: Roles
+  ) {
+    const res = await OrganizationUserEntity.create({
+      organizationId,
+      userId,
+      role,
+    }).go();
+
+    const orgList = await listOrganizationByUserId(userId);
+
+    return { userId, organizations: orgList };
+  }
+
+  /**
+   * List all organizations in the system
+   */
+  async function listAllOrganizations() {
+    const orgs = await OrganizationUserEntity.query
+      .allOrganizations({})
+      .go({ pages: 'all' });
+
+    return orgs.data;
+  }
+
   return {
     OrganizationEntity,
     OrganizationUserEntity,
     createOrganization,
     listOrganizationByUserId,
+    listAllOrganizations,
+    listAllUsersInOrganization,
     checkUserInOrganization,
     createUserAndOrganization,
     addAuthProviderToUser,
+    addUserToOrganization,
   };
 };

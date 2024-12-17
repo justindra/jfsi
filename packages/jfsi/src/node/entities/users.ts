@@ -166,6 +166,7 @@ export const generateUserEntityDetails = (
             'facebook',
             'github',
             'link',
+            'code',
           ] as const,
           required: true,
         },

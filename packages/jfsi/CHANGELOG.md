@@ -1,5 +1,18 @@
 # jfsi
 
+## 0.24.0
+
+### Minor Changes
+
+- 1908daa: Added AWS Library for easy to use methods
+- b6e7f2d: Updated domain utils to use generic app configs
+- 9e7b7bb: Updated user and organizations to have extra methods
+- 78d53cb: Updated generate table options to support sst v3
+
+### Patch Changes
+
+- 9043013: Make sure we can pass in the owner role if we want to
+
 ## 0.23.3
 
 ## 0.23.2

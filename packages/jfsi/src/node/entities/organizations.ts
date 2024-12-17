@@ -5,11 +5,13 @@ import { generateUserEntityDetails } from './users.js';
 import { generateId } from './utils.js';
 
 type GenerateOrganizationEntityDetailsParams<
-  S extends Schema<string, string, string>
+  S extends Schema<string, string, string>,
+  Roles extends string
 > = {
   version?: string;
   service: string;
-  organizationConfig: S;
+  organizationConfig?: S;
+  availableRoles?: Roles[];
 };
 
 /**
@@ -20,10 +22,10 @@ type GenerateOrganizationEntityDetailsParams<
  *
  * This configuration creates 2 different entities:
  *  - Organization - The organization itself
- * - OrganizationUser - The organization and user combination, this is used to
- *                      ensure a user can only belong to an organization once.
- *                      Users are allowed to belong to multiple organizations,
- *                     but an organization can only have a user once.
+ *  - OrganizationUser - The organization and user combination, this is used to
+ *                       ensure a user can only belong to an organization once.
+ *                       Users are allowed to belong to multiple organizations,
+ *                       but an organization can only have a user once.
  *
  * Please ensure the dynamodb table has the following indexes set as a minimum:
  * ```
@@ -48,14 +50,16 @@ export const generateOrganizationEntityDetails = <
   A extends string,
   F extends string,
   C extends string,
-  S extends Schema<A, F, C>
+  S extends Schema<A, F, C>,
+  Roles extends string = 'owner' | 'admin' | 'member'
 >(
   configuration: EntityConfiguration,
   {
     version = '1',
     service,
     organizationConfig,
-  }: GenerateOrganizationEntityDetailsParams<S>,
+    availableRoles = ['owner', 'admin', 'member'] as Roles[],
+  }: GenerateOrganizationEntityDetailsParams<S, Roles>,
   Users: ReturnType<typeof generateUserEntityDetails>
 ) => {
   /**
@@ -119,7 +123,7 @@ export const generateOrganizationEntityDetails = <
         },
         /** The role of the user in that organization */
         role: {
-          type: ['owner', 'admin', 'member'] as const,
+          type: availableRoles as Roles[],
           required: true,
         },
       },
@@ -145,9 +149,15 @@ export const generateOrganizationEntityDetails = <
    * Create an organization in the system.
    * @param ownerId The id of the user that will be the owner of the organization
    * @param organizationName The name of the organization
+   * @param ownerRole The name of the owner role in the organization, defaults
+   *                  to 'owner'
    * @returns
    */
-  async function createOrganization(ownerId: string, organizationName: string) {
+  async function createOrganization(
+    ownerId: string,
+    organizationName: string,
+    ownerRole: Roles = 'owner' as Roles
+  ) {
     if (!ownerId) {
       throw new ValidationException(
         'ownerId is required to create an organization.'
@@ -168,7 +178,7 @@ export const generateOrganizationEntityDetails = <
       organizationId: (res.data as any).organizationId,
       userId: ownerId,
       // The role should be owner as they are the one that is creating the organization
-      role: 'owner',
+      role: ownerRole,
     }).go();
 
     return res.data;

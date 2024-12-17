@@ -83,6 +83,8 @@ export const generateOrganizationEntityDetails = <
         },
         /** The name of the organization */
         name: { type: 'string' },
+        /** The type, used for selecting all */
+        type: { type: 'string', required: true, default: 'organization' },
         ...((organizationConfig?.attributes || {}) as S['attributes']),
       },
       indexes: {
@@ -90,7 +92,12 @@ export const generateOrganizationEntityDetails = <
           pk: { field: 'pk', composite: ['organizationId'] },
           sk: { field: 'sk', composite: [] },
         },
-        ...((organizationConfig?.indexes || {}) as S['indexes']),
+        allOrganizations: {
+          index: DDB_KEYS.gsi1.indexName,
+          pk: { field: DDB_KEYS.gsi1.partitionKey, composite: ['type'] },
+          sk: { field: DDB_KEYS.gsi1.sortKey, composite: ['organizationId'] },
+        },
+        // ...((organizationConfig?.indexes || {}) as S['indexes']),
       },
     },
     configuration
@@ -140,11 +147,6 @@ export const generateOrganizationEntityDetails = <
           pk: { field: DDB_KEYS.gsi1.partitionKey, composite: ['userId'] },
           sk: { field: DDB_KEYS.gsi1.sortKey, composite: ['organizationId'] },
         },
-        allOrganizations: {
-          index: DDB_KEYS.gsi2.indexName,
-          pk: { field: DDB_KEYS.gsi2.partitionKey, composite: [] },
-          sk: { field: DDB_KEYS.gsi2.sortKey, composite: ['organizationId'] },
-        },
       },
     },
     configuration
@@ -187,6 +189,17 @@ export const generateOrganizationEntityDetails = <
     }).go();
 
     return res.data;
+  }
+
+  /**
+   * List all organizations in the system
+   */
+  async function listAllOrganizations() {
+    const orgs = await OrganizationEntity.query
+      .allOrganizations({ type: 'organization' } as any)
+      .go({ pages: 'all' });
+
+    return orgs.data;
   }
 
   /**
@@ -286,17 +299,6 @@ export const generateOrganizationEntityDetails = <
     const orgList = await listOrganizationByUserId(userId);
 
     return { userId, organizations: orgList };
-  }
-
-  /**
-   * List all organizations in the system
-   */
-  async function listAllOrganizations() {
-    const orgs = await OrganizationUserEntity.query
-      .allOrganizations({})
-      .go({ pages: 'all' });
-
-    return orgs.data;
   }
 
   return {

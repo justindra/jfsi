@@ -1,5 +1,11 @@
 # jfsi
 
+## 0.24.1
+
+### Patch Changes
+
+- 56fdfc1: Fix list organizations should query the organization entity
+
 ## 0.24.0
 
 ### Minor Changes

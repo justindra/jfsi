@@ -1,5 +1,12 @@
 # jfsi
 
+## 0.24.2
+
+### Patch Changes
+
+- 7529282: List all users should return the full user entity as well
+- 1389798: Just update the role if user organization already exists
+
 ## 0.24.1
 
 ### Patch Changes

@@ -1,4 +1,4 @@
-import { Entity, EntityConfiguration, Schema } from 'electrodb';
+import { Entity, EntityConfiguration, EntityItem, Schema } from 'electrodb';
 import { ValidationException } from '../errors/index.js';
 import { AUDIT_FIELDS, DDB_KEYS } from './defaults.js';
 import { generateUserEntityDetails } from './users.js';
@@ -225,7 +225,14 @@ export const generateOrganizationEntityDetails = <
       .usersInOrganization({ organizationId })
       .go({ pages: 'all' });
 
-    return users.data;
+    const userEntities = await Users.UserEntity.get(
+      users.data.map((u) => ({ userId: u.userId }))
+    ).go();
+
+    return users.data.map((u) => ({
+      ...u,
+      ...(userEntities.data.find((ue) => ue.userId === u.userId) || {}),
+    }));
   }
 
   /**

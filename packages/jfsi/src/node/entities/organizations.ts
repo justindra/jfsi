@@ -290,7 +290,37 @@ export const generateOrganizationEntityDetails = <
     organizationId: string,
     role: Roles
   ) {
-    const res = await OrganizationUserEntity.create({
+    const existingUserOrgQuery = await OrganizationUserEntity.query
+      .usersInOrganization({ userId: userId, organizationId: organizationId })
+      .go();
+
+    const existingUserOrg = existingUserOrgQuery.data[0];
+
+    if (existingUserOrg) {
+      // User is already in the organization, check if the role is correct
+
+      if (existingUserOrg.role === role) {
+        // Role is already correct, no need to update
+        return {
+          userId,
+          organizations: await listOrganizationByUserId(userId),
+        };
+      }
+
+      // Update the role
+      await OrganizationUserEntity.update({
+        organizationId,
+        userId,
+      })
+        .set({ role })
+        .go();
+
+      // Return the updated list of organizations
+      return { userId, organizations: await listOrganizationByUserId(userId) };
+    }
+
+    // Otherwise, add the user into the organization
+    await OrganizationUserEntity.create({
       organizationId,
       userId,
       role,

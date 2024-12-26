@@ -1,17 +1,10 @@
+import type { GsiKeys } from '../common/type-utilities.js';
 import { getRemovalPolicy } from './removal-policy.js';
 
 // Helper type to generate the keys based on the provided field names
 type GenericIndex<TPk extends string, TSk extends string> = {
   [key in TPk | TSk]: string;
 };
-
-// Helper type to generate keys 'gsi1', 'gsi2', ..., 'gsiN' as a union.
-type GsiKeys<
-  N extends number,
-  Acc extends unknown[] = [unknown]
-> = Acc['length'] extends N
-  ? `gsi${Acc['length']}`
-  : `gsi${Acc['length']}` | GsiKeys<N, [...Acc, unknown]>;
 
 // Helper type to generate keys with suffixes like 'gsi1pk', 'gsi1sk', ..., 'gsiNpk', 'gsiNsk'.
 type GsiFields<N extends number> = `${GsiKeys<N>}pk` | `${GsiKeys<N>}sk`;

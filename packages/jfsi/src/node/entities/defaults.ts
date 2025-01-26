@@ -16,11 +16,9 @@ export const AUDIT_FIELDS = {
   },
   createdBy: {
     type: 'string',
-    readOnly: true,
   },
   updatedBy: {
     type: 'string',
-    readOnly: true,
   },
 } as const;
 

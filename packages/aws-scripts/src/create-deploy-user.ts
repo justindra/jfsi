@@ -13,8 +13,13 @@ import {
   CreateUserCommand,
   AddUserToGroupCommand,
 } from '@aws-sdk/client-iam';
+import { fromIni } from '@aws-sdk/credential-providers';
 
-const iamClient = new IAMClient({ region: 'us-east-1' });
+const PROFILE = process.argv[2] || 'default';
+
+const credentials = fromIni({ profile: PROFILE });
+
+const iamClient = new IAMClient({ region: 'us-east-1', credentials });
 
 const AWS_POLICIES_TO_ATTACH = [
   'arn:aws:iam::aws:policy/AdministratorAccess',

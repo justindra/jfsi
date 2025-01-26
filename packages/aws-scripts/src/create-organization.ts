@@ -158,4 +158,6 @@ const assignment = await assignGroupToOrganization(
   group?.GroupId || '',
   org.Id || ''
 );
-console.log(`Assigned admin group to organization: ${assignment}`);
+console.log(
+  `Assigned admin group to organization: ${JSON.stringify(assignment)}`
+);

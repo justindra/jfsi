@@ -1,5 +1,13 @@
 # jfsi
 
+## 0.24.2
+
+### Patch Changes
+
+- 7529282: List all users should return the full user entity as well
+- 277a2a1: Add a function to generate the DDB_Keys
+- 1389798: Just update the role if user organization already exists
+
 ## 0.24.1
 
 ### Patch Changes
